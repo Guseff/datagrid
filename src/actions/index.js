@@ -1,2 +1,2 @@
 export * from './sort'
-export { default } from './offset'
+export * from './offset'

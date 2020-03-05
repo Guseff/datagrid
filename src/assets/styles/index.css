@@ -8,8 +8,6 @@
 }
 
 .table-wrapper {
-  /* height: calc(100vh - 300px); */
-  height: 700px;
   overflow: auto;
   border-top: 0;
 }

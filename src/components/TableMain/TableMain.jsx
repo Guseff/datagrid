@@ -4,14 +4,23 @@ import { ROW_HEIGHT, RENDER_PART } from '../../constants'
 
 import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
-import putOffset from '../../actions/offset'
+import { putOffset, setWindowSize } from '../../actions/offset'
 
 const TableMain = () => {
+  const dispatch = useDispatch()
+
+  const updateWindowSize = () => {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    dispatch(setWindowSize(w, h))
+  }
+  updateWindowSize()
+  window.addEventListener('resize', updateWindowSize)
+
   const data = useSelector(state => state.data)
   const filter = useSelector(state => state.filter.filterIfActive)
-  const scroll = useSelector(state => state.offset.offset)
-
-  const dispatch = useDispatch()
+  const scroll = useSelector(state => state.vrt.offset)
+  const wrapHeight = useSelector(state => state.vrt.height) - 350
 
   const actualData = filter ? data.filter(string => string.isActive) : data
 
@@ -35,6 +44,7 @@ const TableMain = () => {
         scrollHandle={scrollHandle}
         data={renderPart}
         sHeight={actualData.length * ROW_HEIGHT}
+        wrapHeight={wrapHeight}
         scroll={scroll}
       />
     </>
