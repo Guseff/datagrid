@@ -4,10 +4,13 @@ import PropTypes from 'prop-types'
 const TableBody = forwardRef(({ data, scrollHandle, sHeight, scroll }, ref) => {
   return (
     <div ref={ref} onScroll={scrollHandle} className="border table-wrapper">
-      <div style={{ height: sHeight }}>
+      <div style={{ height: sHeight, position: 'relative' }}>
         <table
           className="table table-hover table-sm table-body"
-          style={{ marginTop: Math.min(scroll * 35, sHeight) }}
+          style={{
+            position: 'absolute',
+            top: Math.min(scroll * 35, sHeight - 30 * 35),
+          }}
         >
           <colgroup>
             <col className="table-col-1" />

@@ -5,6 +5,9 @@ import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
 import putOffset from '../../actions/offset'
 
+const ROW_HEIGHT = 35
+const RENDER_PART = 30
+
 const TableMain = () => {
   const data = useSelector(state => state.data)
   const filter = useSelector(state => state.filter.filterIfActive)
@@ -16,11 +19,16 @@ const TableMain = () => {
 
   const scrollHandle = e => {
     const d = e.target.scrollTop
-    const s = Math.min(Math.floor(d / 35), actualData.length * 35)
+    const s = Math.min(
+      Math.floor(d / ROW_HEIGHT),
+      actualData.length * ROW_HEIGHT
+    )
     dispatch(putOffset(s))
   }
 
-  const renderPart = actualData.slice(scroll, scroll + 30)
+  const shift =
+    scroll < data.length - RENDER_PART ? scroll : data.length - RENDER_PART
+  const renderPart = actualData.slice(shift, shift + RENDER_PART)
 
   return (
     <>
@@ -28,7 +36,7 @@ const TableMain = () => {
       <TableBody
         scrollHandle={scrollHandle}
         data={renderPart}
-        sHeight={actualData.length * 35}
+        sHeight={actualData.length * ROW_HEIGHT}
         scroll={scroll}
       />
     </>
