@@ -1,26 +1,32 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import TableBody from '../TableBody'
+import TableHead from '../TableHead/TableHead'
+import putOffset from '../../actions/offset'
 
 const TableMain = () => {
   const data = useSelector(state => state.data)
+  const filter = useSelector(state => state.filter.filterIfActive)
+  const scroll = useSelector(state => state.offset.offset)
+
+  const dispatch = useDispatch()
+
+  const actualData = filter ? data.filter(string => string.isActive) : data
+
+  const scrollHandle = e => {
+    const d = e.target.scrollTop
+    console.log(d, d / 35)
+    dispatch(putOffset(Math.floor(d / 35)))
+  }
+
+  const renderPart = actualData.slice(scroll, scroll + 30)
+
   return (
-    <table className="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Rank</th>
-          <th scope="col">Name</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Avatar</th>
-          <th scope="col">City</th>
-          <th scope="col">Address</th>
-          <th scope="col">Is Active</th>
-        </tr>
-      </thead>
-      <TableBody data={data} />
-    </table>
+    <>
+      <TableHead />
+      <TableBody scrollHandle={scrollHandle} data={renderPart} />
+    </>
   )
 }
 

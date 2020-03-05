@@ -5,7 +5,7 @@ facker.seed(123)
 const makeFackeString = x => {
   return {
     id: x + 1,
-    rank: facker.random.number(20),
+    rank: facker.random.number(19) + 1,
     name: facker.name.firstName(),
     email: facker.internet.email(),
     avatar: facker.image.avatar(),
@@ -16,6 +16,6 @@ const makeFackeString = x => {
 }
 
 const makeData = () =>
-  [...new Array(50)].map((_, index) => makeFackeString(index))
+  [...new Array(150)].map((_, index) => makeFackeString(index))
 
 export default makeData
