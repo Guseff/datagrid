@@ -1,12 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { ROW_HEIGHT, RENDER_PART } from '../../constants'
 
 import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
 import putOffset from '../../actions/offset'
-
-const ROW_HEIGHT = 35
-const RENDER_PART = 30
 
 const TableMain = () => {
   const data = useSelector(state => state.data)

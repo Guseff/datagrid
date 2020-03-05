@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { ROW_HEIGHT, RENDER_PART } from '../../constants'
 
 const TableBody = forwardRef(({ data, scrollHandle, sHeight, scroll }, ref) => {
   return (
@@ -9,7 +10,10 @@ const TableBody = forwardRef(({ data, scrollHandle, sHeight, scroll }, ref) => {
           className="table table-hover table-sm table-body"
           style={{
             position: 'absolute',
-            top: Math.min(scroll * 35, sHeight - 30 * 35),
+            top: Math.min(
+              scroll * ROW_HEIGHT,
+              sHeight - RENDER_PART * ROW_HEIGHT
+            ),
           }}
         >
           <colgroup>

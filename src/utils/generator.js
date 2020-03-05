@@ -16,6 +16,6 @@ const makeFackeString = x => {
 }
 
 const makeData = () =>
-  [...new Array(150)].map((_, index) => makeFackeString(index))
+  [...new Array(500)].map((_, index) => makeFackeString(index))
 
 export default makeData
