@@ -16,8 +16,8 @@ const TableMain = () => {
 
   const scrollHandle = e => {
     const d = e.target.scrollTop
-    console.log(d, d / 35)
-    dispatch(putOffset(Math.floor(d / 35)))
+    const s = Math.min(Math.floor(d / 35), actualData.length * 35)
+    dispatch(putOffset(s))
   }
 
   const renderPart = actualData.slice(scroll, scroll + 30)
@@ -25,7 +25,12 @@ const TableMain = () => {
   return (
     <>
       <TableHead />
-      <TableBody scrollHandle={scrollHandle} data={renderPart} />
+      <TableBody
+        scrollHandle={scrollHandle}
+        data={renderPart}
+        sHeight={actualData.length * 35}
+        scroll={scroll}
+      />
     </>
   )
 }
