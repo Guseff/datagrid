@@ -1,31 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ROW_HEIGHT } from '../../constants'
+import { useSelector } from 'react-redux'
+import { ROW_HEIGHT, OTHER_HEIGHT } from '../../constants'
 
-const TableBody = ({
-  data,
-  scrollHandle,
-  sHeight,
-  wrapHeight,
-  scroll,
-  renderQty,
-}) => {
+const TableBody = ({ data, scrollHandle, sHeight }) => {
+  const scroll = useSelector(state => state.vrt.offset)
+  const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT
+  const virtualize = useSelector(state => state.vrt.virtualize)
+
+  const renderQty = wrapHeight / ROW_HEIGHT + 3
+
+  const shift =
+    scroll < data.length - renderQty ? scroll : data.length - renderQty
+  const renderPart = virtualize ? data.slice(shift, shift + renderQty) : data
+
   return (
     <div
       onScroll={scrollHandle}
       className="border table-wrapper"
       style={{ height: wrapHeight }}
     >
-      <div style={{ height: sHeight, position: 'relative' }}>
+      <div
+        style={virtualize ? { height: sHeight, position: 'relative' } : null}
+      >
         <table
           className="table table-hover table-sm table-body"
-          style={{
-            position: 'absolute',
-            top: Math.min(
-              scroll * ROW_HEIGHT,
-              sHeight - renderQty * ROW_HEIGHT
-            ),
-          }}
+          style={
+            virtualize
+              ? {
+                  position: 'absolute',
+                  top: Math.min(
+                    scroll * ROW_HEIGHT,
+                    sHeight - renderQty * ROW_HEIGHT
+                  ),
+                }
+              : null
+          }
         >
           <colgroup>
             <col className="table-col-1" />
@@ -38,7 +48,7 @@ const TableBody = ({
             <col className="table-col-8" />
           </colgroup>
           <tbody>
-            {data.map(string => (
+            {renderPart.map(string => (
               <tr key={string.id.toString()}>
                 <th scope="row">{string.id}</th>
                 <td>{string.rank}</td>
@@ -63,9 +73,6 @@ TableBody.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
   scrollHandle: PropTypes.func.isRequired,
   sHeight: PropTypes.number.isRequired,
-  wrapHeight: PropTypes.number.isRequired,
-  scroll: PropTypes.number.isRequired,
-  renderQty: PropTypes.number.isRequired,
 }
 
 export default TableBody
