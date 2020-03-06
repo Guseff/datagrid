@@ -1,5 +1,6 @@
-.app-header {
-  height: 150px;
+.input-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .table.table-header {
