@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { ROW_HEIGHT, RENDER_PART } from '../../constants'
+import { ROW_HEIGHT, OTHER_HEIGHT } from '../../constants'
 
 import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
@@ -20,7 +20,8 @@ const TableMain = () => {
   const data = useSelector(state => state.data)
   const filter = useSelector(state => state.filter.filterIfActive)
   const scroll = useSelector(state => state.vrt.offset)
-  const wrapHeight = useSelector(state => state.vrt.height) - 350
+  const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT
+  const renderQty = wrapHeight / ROW_HEIGHT + 3
 
   const actualData = filter ? data.filter(string => string.isActive) : data
 
@@ -34,8 +35,8 @@ const TableMain = () => {
   }
 
   const shift =
-    scroll < data.length - RENDER_PART ? scroll : data.length - RENDER_PART
-  const renderPart = actualData.slice(shift, shift + RENDER_PART)
+    scroll < data.length - renderQty ? scroll : data.length - renderQty
+  const renderPart = actualData.slice(shift, shift + renderQty)
 
   return (
     <>
@@ -46,6 +47,7 @@ const TableMain = () => {
         sHeight={actualData.length * ROW_HEIGHT}
         wrapHeight={wrapHeight}
         scroll={scroll}
+        renderQty={renderQty}
       />
     </>
   )

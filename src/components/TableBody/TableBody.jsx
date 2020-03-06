@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { ROW_HEIGHT, RENDER_PART } from '../../constants'
+import { ROW_HEIGHT } from '../../constants'
 
 const TableBody = forwardRef(
-  ({ data, scrollHandle, sHeight, wrapHeight, scroll }, ref) => {
+  ({ data, scrollHandle, sHeight, wrapHeight, scroll, renderQty }, ref) => {
     return (
       <div
         ref={ref}
@@ -18,7 +18,7 @@ const TableBody = forwardRef(
               position: 'absolute',
               top: Math.min(
                 scroll * ROW_HEIGHT,
-                sHeight - RENDER_PART * ROW_HEIGHT
+                sHeight - renderQty * ROW_HEIGHT
               ),
             }}
           >
@@ -61,6 +61,7 @@ TableBody.propTypes = {
   sHeight: PropTypes.number.isRequired,
   wrapHeight: PropTypes.number.isRequired,
   scroll: PropTypes.number.isRequired,
+  renderQty: PropTypes.number.isRequired,
 }
 
 export default TableBody
