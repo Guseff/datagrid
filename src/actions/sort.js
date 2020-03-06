@@ -1,22 +1,15 @@
-import { SORT_BY_NAME, SORT_BY_ACTIVE, FILTER_IF_ACTIVE } from '../constants'
+import { SORT_BY_NAME, SORT_BY_RANK } from '../constants'
 
-export const sortByActive = val => {
+export const sortByRank = val => {
   return {
-    type: SORT_BY_ACTIVE,
+    type: SORT_BY_RANK,
     payload: val,
   }
 }
 
-export const filterIfActive = val => {
-  return {
-    type: FILTER_IF_ACTIVE,
-    payload: val,
-  }
-}
-
-export const sortByName = () => {
+export const sortByName = str => {
   return {
     type: SORT_BY_NAME,
-    payload: {},
+    payload: str,
   }
 }

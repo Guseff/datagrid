@@ -5,7 +5,7 @@ import allRedusers from '../reducers'
 import makeData from '../utils'
 
 const initialState = {
-  vrt: { offset: 0 },
+  vrt: { offset: 0, virtualize: true },
   data: makeData(),
 }
 

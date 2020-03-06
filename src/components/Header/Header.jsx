@@ -1,19 +1,24 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { filterIfActive } from '../../actions/sort'
+import { filterIfActive, toggleVirtualize } from '../../actions'
 
 const Header = () => {
   const dispatch = useDispatch()
 
   const activeOnly = useSelector(state => state.filter.filterIfActive)
+  const virtualize = useSelector(state => state.vrt.virtualize)
 
   const activeCheckHandle = () => {
     dispatch(filterIfActive(!activeOnly))
   }
 
+  const virtualizeCheckHandle = () => {
+    dispatch(toggleVirtualize(!virtualize))
+  }
+
   return (
     <div className="container my-3">
-      <h3>RS School Test Table With Black Jack</h3>
+      <h3>RS School Test Table With Black Jack And Girls</h3>
       <form action="\">
         <div className="row">
           <div className="col-6">
@@ -48,7 +53,12 @@ const Header = () => {
         </div>
         <div className="row mt-3">
           <div className="offset-8 col-4 input-wrapper">
-            <input type="checkbox" className="mr-3" />
+            <input
+              type="checkbox"
+              defaultChecked={virtualize}
+              className="mr-3"
+              onChange={virtualizeCheckHandle}
+            />
             <span className="text-muted">Use virtualization</span>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { PUT_OFFSET, SET_WINDOW_SIZE } from '../constants'
+import { PUT_OFFSET, SET_WINDOW_SIZE, VIRTUALIZE_TOGGLE } from '../constants'
 
 export const putOffset = offset => {
   return {
@@ -14,5 +14,12 @@ export const setWindowSize = (w, h) => {
       width: w,
       height: h,
     },
+  }
+}
+
+export const toggleVirtualize = val => {
+  return {
+    type: VIRTUALIZE_TOGGLE,
+    payload: val,
   }
 }
