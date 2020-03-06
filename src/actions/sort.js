@@ -1,15 +1,15 @@
-import { SORT_BY_NAME, SORT_BY_ACTIVE } from '../constants'
+import { SORT_BY_NAME, SORT_BY_RANK } from '../constants'
 
-export const sortByActive = () => {
+export const sortByRank = val => {
   return {
-    type: SORT_BY_ACTIVE,
-    payload: {},
+    type: SORT_BY_RANK,
+    payload: val,
   }
 }
 
-export const sortByName = () => {
+export const sortByName = str => {
   return {
     type: SORT_BY_NAME,
-    payload: {},
+    payload: str,
   }
 }

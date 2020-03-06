@@ -1,32 +1,47 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-// import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
+import { ROW_HEIGHT } from '../../constants'
 
 import TableBody from '../TableBody'
+import TableHead from '../TableHead/TableHead'
+import { putOffset, setWindowSize } from '../../actions/offset'
 
 const TableMain = () => {
+  const dispatch = useDispatch()
+
+  const updateWindowSize = () => {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    dispatch(setWindowSize(w, h))
+  }
+  updateWindowSize()
+  window.addEventListener('resize', updateWindowSize)
+
   const data = useSelector(state => state.data)
+  const filter = useSelector(state => state.filter.filterIfActive)
+
+  const actualData = filter ? data.filter(string => string.isActive) : data
+
+  const scrollHandle = e => {
+    e.preventDefault()
+    const d = e.target.scrollTop
+    const s = Math.min(
+      Math.floor(d / ROW_HEIGHT),
+      actualData.length * ROW_HEIGHT
+    )
+    dispatch(putOffset(s))
+  }
+
   return (
-    <table className="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Rank</th>
-          <th scope="col">Name</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Avatar</th>
-          <th scope="col">City</th>
-          <th scope="col">Address</th>
-          <th scope="col">Is Active</th>
-        </tr>
-      </thead>
-      <TableBody data={data} />
-    </table>
+    <>
+      <TableHead />
+      <TableBody
+        scrollHandle={scrollHandle}
+        data={actualData}
+        sHeight={actualData.length * ROW_HEIGHT}
+      />
+    </>
   )
 }
-
-// TableMain.propTypes = {
-//   data: PropTypes.instanceOf(Object).isRequired,
-// }
 
 export default TableMain
