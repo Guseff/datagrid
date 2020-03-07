@@ -19,8 +19,15 @@ const TableMain = () => {
 
   const data = useSelector(state => state.data)
   const filter = useSelector(state => state.filter.filterIfActive)
+  const { byRank } = useSelector(state => state.sort)
 
   const actualData = filter ? data.filter(string => string.isActive) : data
+
+  const sortedByRankData = byRank
+    ? [...actualData].sort((a, b) =>
+        byRank === 'inc' ? a.rank - b.rank : b.rank - a.rank
+      )
+    : actualData
 
   const scrollHandle = e => {
     e.preventDefault()
@@ -37,7 +44,7 @@ const TableMain = () => {
       <TableHead />
       <TableBody
         scrollHandle={scrollHandle}
-        data={actualData}
+        data={sortedByRankData}
         sHeight={actualData.length * ROW_HEIGHT}
       />
     </>

@@ -1,9 +1,23 @@
 import React from 'react'
-// import { useSelector } from 'react-redux'
-// import { UP_ARROW, DOWN_ARROW } from '../../constants'
+import { useSelector, useDispatch } from 'react-redux'
+import { sortByRank } from '../../actions'
+import { getArrow } from '../../utils'
 
 const TableHead = () => {
-  // const rankS = useSelector(state => state.sort.sortByRank)
+  const dispatch = useDispatch()
+  const rankSort = useSelector(state => state.sort.byRank)
+
+  const rankArr = getArrow(rankSort)
+
+  const rankButtonHandle = () => {
+    if (!rankSort) {
+      dispatch(sortByRank('inc'))
+    } else if (rankSort === 'inc') {
+      dispatch(sortByRank('dec'))
+    } else {
+      dispatch(sortByRank(undefined))
+    }
+  }
 
   return (
     <div>
@@ -22,7 +36,9 @@ const TableHead = () => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">
-              <button type="button">Rank</button>
+              <button type="button" onClick={rankButtonHandle}>
+                {`Rank ${rankArr}`}
+              </button>
             </th>
             <th scope="col">Name</th>
             <th scope="col">E-mail</th>

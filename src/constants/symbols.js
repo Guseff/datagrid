@@ -1,2 +1,3 @@
-export const UP_ARROW = ' \u2191'
-export const DOWN_ARROW = ' \u2193'
+export const UP_ARROW = '\u21E9'
+export const DOWN_ARROW = '\u21E7'
+export const TWO_ARROWS = '\u21F3'

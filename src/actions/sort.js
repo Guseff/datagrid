@@ -1,9 +1,9 @@
 import { SORT_BY_NAME, SORT_BY_RANK } from '../constants'
 
-export const sortByRank = val => {
+export const sortByRank = str => {
   return {
     type: SORT_BY_RANK,
-    payload: val,
+    payload: str,
   }
 }
 

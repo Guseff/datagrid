@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <div className="container my-3">
-      <h3>RS School Test Table With Black Jack And Girls</h3>
+      <h3>RS School Test Table With Blackjack And Girls</h3>
       <form action="\">
         <div className="row">
           <div className="col-6">
