@@ -4,12 +4,13 @@
 }
 
 .table.table-header {
+  width: 1091px;
   margin-bottom: 0;
   border-bottom: 0;
 }
 
 .table-wrapper {
-  overflow: auto;
+  overflow-y: scroll;
   border-top: 0;
 }
 
@@ -25,6 +26,18 @@
 tr img {
   width: 24px;
   border-radius: 50%;
+}
+
+th>button {
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+th>button:active, th>button:focus {
+  outline: 0;
 }
 
 .table-col-1 {
