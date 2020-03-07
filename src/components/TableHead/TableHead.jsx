@@ -1,6 +1,10 @@
 import React from 'react'
+// import { useSelector } from 'react-redux'
+// import { UP_ARROW, DOWN_ARROW } from '../../constants'
 
 const TableHead = () => {
+  // const rankS = useSelector(state => state.sort.sortByRank)
+
   return (
     <div>
       <table className="table table-hover table-sm table-header">
@@ -17,7 +21,9 @@ const TableHead = () => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Rank</th>
+            <th scope="col">
+              <button type="button">Rank</button>
+            </th>
             <th scope="col">Name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Avatar</th>
