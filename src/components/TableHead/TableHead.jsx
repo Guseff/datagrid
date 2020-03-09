@@ -1,22 +1,32 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { sortByRank } from '../../actions'
+import { sortByRank, sortByName } from '../../actions'
 import { getArrow } from '../../utils'
 
 const TableHead = () => {
   const dispatch = useDispatch()
-  const rankSort = useSelector(state => state.sort.byRank)
+  const { byRank, byName } = useSelector(state => state.sort)
 
-  const rankArr = getArrow(rankSort)
+  const rankArr = getArrow(byRank)
+  const nameArr = getArrow(byName)
 
   const rankButtonHandle = () => {
-    if (!rankSort) {
+    if (!byRank) {
       dispatch(sortByRank('inc'))
-    } else if (rankSort === 'inc') {
+    } else if (byRank === 'inc') {
       dispatch(sortByRank('dec'))
     } else {
       dispatch(sortByRank(undefined))
+    }
+  }
+
+  const nameButtonHandle = () => {
+    if (!byName) {
+      dispatch(sortByName('inc'))
+    } else if (byName === 'inc') {
+      dispatch(sortByName('dec'))
+    } else {
+      dispatch(sortByName(undefined))
     }
   }
 
@@ -41,7 +51,11 @@ const TableHead = () => {
                 {`Rank ${rankArr}`}
               </button>
             </th>
-            <th scope="col">Name</th>
+            <th scope="col">
+              <button type="button" onClick={nameButtonHandle}>
+                {`Name ${nameArr}`}
+              </button>
+            </th>
             <th scope="col">E-mail</th>
             <th scope="col">Avatar</th>
             <th scope="col">Address</th>
