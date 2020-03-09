@@ -11,3 +11,13 @@ export const WEEK = {
   fri: 'Fri.',
   sat: 'Sat.',
 }
+
+export const DAYS = [
+  { value: 'mon', label: 'Monday' },
+  { value: 'tue', label: 'Tuesday' },
+  { value: 'wed', label: 'Wednesday' },
+  { value: 'thu', label: 'Thursday' },
+  { value: 'fri', label: 'Friday' },
+  { value: 'sat', label: 'Saturday' },
+  { value: 'sun', label: 'Sunday' },
+]

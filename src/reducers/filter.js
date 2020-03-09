@@ -1,8 +1,14 @@
-import { FILTER_IF_ACTIVE, FILTER_OFF, FILTER_BY_TEXT } from '../constants'
+import {
+  FILTER_IF_ACTIVE,
+  FILTER_OFF,
+  FILTER_BY_TEXT,
+  FILTER_BY_DAYS,
+} from '../constants'
 
 const initialState = {
   filterIfActive: false,
   filterByText: '',
+  filterByDays: [],
 }
 
 const filter = (state = initialState, action) => {
@@ -12,6 +18,9 @@ const filter = (state = initialState, action) => {
 
     case FILTER_BY_TEXT:
       return { ...state, filterByText: action.payload }
+
+    case FILTER_BY_DAYS:
+      return { ...state, filterByDays: action.payload }
 
     case FILTER_OFF:
       return { ...state, filterIfActive: false }

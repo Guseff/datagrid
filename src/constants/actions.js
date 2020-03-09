@@ -6,6 +6,7 @@ export const SORT_BY_RANK = 'SORT_BY_RANK'
 
 export const FILTER_IF_ACTIVE = 'FILTER_IF_ACTIVE'
 export const FILTER_BY_TEXT = 'FILTER_BY_TEXT'
+export const FILTER_BY_DAYS = 'FILTER_BY_DAYS'
 export const FILTER_OFF = 'FILTER_OFF'
 
 export const PUT_OFFSET = 'PUT_OFFSET'
