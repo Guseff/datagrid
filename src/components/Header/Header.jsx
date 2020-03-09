@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { filterIfActive, toggleVirtualize } from '../../actions'
+import Select from 'react-select'
 
-import Search from '../Search/Search'
+import { DAYS } from '../../constants'
+import { filterIfActive, toggleVirtualize, filterByDays } from '../../actions'
+
+import Search from '../Search'
 
 const Header = () => {
   const dispatch = useDispatch()
 
   const activeOnly = useSelector(state => state.filter.filterIfActive)
   const virtualize = useSelector(state => state.vrt.virtualize)
+  const [selected, setSelected] = useState()
 
   const activeCheckHandle = () => {
     dispatch(filterIfActive(!activeOnly))
@@ -16,6 +20,11 @@ const Header = () => {
 
   const virtualizeCheckHandle = () => {
     dispatch(toggleVirtualize(!virtualize))
+  }
+
+  const selectChange = options => {
+    setSelected(options)
+    dispatch(filterByDays(options))
   }
 
   return (
@@ -27,12 +36,12 @@ const Header = () => {
             <Search />
           </div>
           <div className="col-6">
-            <span className="form-text text-muted">Search</span>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail2"
-              aria-describedby="emailHelp"
+            <span className="form-text text-muted">Select days to filter</span>
+            <Select
+              isMulti
+              value={selected}
+              onChange={selectChange}
+              options={DAYS}
             />
           </div>
         </div>
