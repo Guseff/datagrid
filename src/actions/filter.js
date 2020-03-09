@@ -1,14 +1,15 @@
-import { FILTER_IF_ACTIVE, FILTER_OFF } from '../constants'
+import { FILTER_IF_ACTIVE, FILTER_OFF, FILTER_BY_TEXT } from '../constants'
 
-export const filterIfActive = val => {
-  return {
-    type: FILTER_IF_ACTIVE,
-    payload: val,
-  }
-}
+export const filterIfActive = val => ({
+  type: FILTER_IF_ACTIVE,
+  payload: val,
+})
 
-export const filterOff = () => {
-  return {
-    type: FILTER_OFF,
-  }
-}
+export const filterByText = text => ({
+  type: FILTER_BY_TEXT,
+  payload: text,
+})
+
+export const filterOff = () => ({
+  type: FILTER_OFF,
+})

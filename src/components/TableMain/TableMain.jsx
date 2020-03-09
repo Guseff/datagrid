@@ -18,23 +18,34 @@ const TableMain = () => {
   window.addEventListener('resize', updateWindowSize)
 
   const data = useSelector(state => state.data)
-  const filter = useSelector(state => state.filter.filterIfActive)
+  const { filterIfActive, filterByText } = useSelector(state => state.filter)
   const { byRank } = useSelector(state => state.sort)
 
-  const actualData = filter ? data.filter(string => string.isActive) : data
+  const dataAfterActiveFilter = filterIfActive
+    ? data.filter(string => string.isActive)
+    : data
+
+  const dataAfterTextFilter = filterByText
+    ? dataAfterActiveFilter.filter(
+        string =>
+          string.name.toLowerCase().startsWith(filterByText.toLowerCase()) ||
+          string.city.toLowerCase().startsWith(filterByText.toLowerCase()) ||
+          string.address.toLowerCase().startsWith(filterByText.toLowerCase())
+      )
+    : dataAfterActiveFilter
 
   const sortedByRankData = byRank
-    ? [...actualData].sort((a, b) =>
+    ? [...dataAfterTextFilter].sort((a, b) =>
         byRank === 'inc' ? a.rank - b.rank : b.rank - a.rank
       )
-    : actualData
+    : dataAfterTextFilter
 
   const scrollHandle = e => {
     e.preventDefault()
     const d = e.target.scrollTop
     const s = Math.min(
       Math.floor(d / ROW_HEIGHT),
-      actualData.length * ROW_HEIGHT
+      sortedByRankData.length * ROW_HEIGHT
     )
     dispatch(putOffset(s))
   }
@@ -45,7 +56,7 @@ const TableMain = () => {
       <TableBody
         scrollHandle={scrollHandle}
         data={sortedByRankData}
-        sHeight={actualData.length * ROW_HEIGHT}
+        sHeight={sortedByRankData.length * ROW_HEIGHT}
       />
     </>
   )

@@ -10,9 +10,19 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
 
   const renderQty = wrapHeight / ROW_HEIGHT + 3
 
-  const shift =
-    scroll < data.length - renderQty ? scroll : data.length - renderQty
+  const getShift = () => {
+    if (scroll === 0) return 0
+    return scroll < data.length - renderQty ? scroll : data.length - renderQty
+  }
+
+  const shift = getShift()
+
   const renderPart = virtualize ? data.slice(shift, shift + renderQty) : data
+
+  const tableTop = Math.min(
+    scroll * ROW_HEIGHT,
+    sHeight - renderQty * ROW_HEIGHT
+  )
 
   return (
     <div
@@ -29,10 +39,7 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
             virtualize
               ? {
                   position: 'absolute',
-                  top: Math.min(
-                    scroll * ROW_HEIGHT,
-                    sHeight - renderQty * ROW_HEIGHT
-                  ),
+                  top: tableTop > 0 ? tableTop : 0,
                 }
               : null
           }
