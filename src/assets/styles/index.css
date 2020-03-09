@@ -1,0 +1,66 @@
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.table.table-header {
+  width: 1091px;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.table-wrapper {
+  overflow-y: scroll;
+  border-top: 0;
+}
+
+.table-body {
+  min-width: 100%;
+  border-top: 0;
+}
+
+.tr-head th {
+  text-align: center;
+}
+
+tr img {
+  width: 24px;
+  border-radius: 50%;
+}
+
+th>button {
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+th>button:active, th>button:focus {
+  outline: 0;
+}
+
+.table-col-1 {
+  width: 50px;
+}
+.table-col-2 {
+  width: 80px;
+}
+.table-col-3 {
+  width: 150px;
+}
+.table-col-4 {
+  width: 320px;
+}
+.table-col-5 {
+  width: 50px;
+}
+.table-col-6 {
+  width: 190px;
+}
+.table-col-7 {
+  width: 220px;
+}
+.table-col-8 {
+  width: 50px;
+}

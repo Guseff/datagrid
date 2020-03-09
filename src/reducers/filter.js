@@ -7,7 +7,7 @@ const initialState = {
 const filter = (state = initialState, action) => {
   switch (action.type) {
     case FILTER_IF_ACTIVE:
-      return { ...state, filterIfActive: true }
+      return { ...state, filterIfActive: action.payload }
 
     case FILTER_OFF:
       return { ...state, filterIfActive: false }

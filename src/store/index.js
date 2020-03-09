@@ -2,9 +2,10 @@
 import { createStore } from 'redux'
 
 import allRedusers from '../reducers'
-import makeData from '../utils'
+import { makeData } from '../utils'
 
 const initialState = {
+  vrt: { offset: 0, virtualize: true },
   data: makeData(),
 }
 
