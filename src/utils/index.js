@@ -4,7 +4,7 @@ const faker = require('faker')
 
 faker.seed(123)
 
-const makeFackeString = x => {
+const makeFakeString = x => {
   return {
     id: x + 1,
     rank: faker.random.number(19) + 1,
@@ -21,7 +21,7 @@ const makeFackeString = x => {
 }
 
 export const makeData = () =>
-  [...new Array(500)].map((_, index) => makeFackeString(index))
+  [...new Array(1500)].map((_, index) => makeFakeString(index))
 
 export const getArrow = rank => {
   if (!rank) return TWO_ARROWS

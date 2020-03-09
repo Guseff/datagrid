@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { filterIfActive, toggleVirtualize } from '../../actions'
 
+import Search from '../Search/Search'
+
 const Header = () => {
   const dispatch = useDispatch()
 
@@ -22,13 +24,7 @@ const Header = () => {
       <form action="\">
         <div className="row">
           <div className="col-6">
-            <span className="form-text text-muted">Search</span>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
+            <Search />
           </div>
           <div className="col-6">
             <span className="form-text text-muted">Search</span>
