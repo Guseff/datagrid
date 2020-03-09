@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { sortByRank } from '../../actions'
 import { getArrow } from '../../utils'
 
@@ -43,8 +44,8 @@ const TableHead = () => {
             <th scope="col">Name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Avatar</th>
-            <th scope="col">City</th>
             <th scope="col">Address</th>
+            <th scope="col">Day</th>
             <th scope="col">Active</th>
           </tr>
         </thead>

@@ -4,11 +4,11 @@ import sort from './sort'
 import filter from './filter'
 import vrt from './offset'
 
-const allRedusers = combineReducers({
+const allReducers = combineReducers({
   data,
   sort,
   filter,
   vrt,
 })
 
-export default allRedusers
+export default allReducers

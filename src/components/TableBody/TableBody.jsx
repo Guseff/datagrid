@@ -53,12 +53,16 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
                 <th scope="row">{string.id}</th>
                 <td>{string.rank}</td>
                 <td>{string.name}</td>
-                <td>{string.email}</td>
+                <td>
+                  <div className="ellipsis">{string.email}</div>
+                </td>
                 <td>
                   <img alt="" src={string.avatar} />
                 </td>
-                <td>{string.city}</td>
-                <td>{string.address}</td>
+                <td>
+                  <div className="ellipsis">{`${string.address.street} ${string.address.city}`}</div>
+                </td>
+                <td>{string.day}</td>
                 <td>{string.isActive ? 'Yes' : 'No'}</td>
               </tr>
             ))}

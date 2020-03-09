@@ -1,7 +1,6 @@
-/* eslint no-underscore-dangle: 0 */
 import { createStore } from 'redux'
 
-import allRedusers from '../reducers'
+import allReducers from '../reducers'
 import { makeData } from '../utils'
 
 const initialState = {
@@ -10,8 +9,9 @@ const initialState = {
 }
 
 const store = createStore(
-  allRedusers,
+  allReducers,
   initialState,
+  // eslint-disable-next-line no-underscore-dangle
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

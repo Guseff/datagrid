@@ -1,19 +1,22 @@
-import { UP_ARROW, DOWN_ARROW, TWO_ARROWS } from '../constants'
+import { UP_ARROW, DOWN_ARROW, TWO_ARROWS, WEEK } from '../constants'
 
-const facker = require('faker')
+const faker = require('faker')
 
-facker.seed(123)
+faker.seed(123)
 
 const makeFackeString = x => {
   return {
     id: x + 1,
-    rank: facker.random.number(19) + 1,
-    name: facker.name.firstName(),
-    email: facker.internet.email(),
-    avatar: facker.image.avatar(),
-    city: facker.address.city(),
-    address: facker.address.streetAddress(),
-    isActive: facker.random.boolean(),
+    rank: faker.random.number(19) + 1,
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    avatar: faker.image.avatar(),
+    address: {
+      city: faker.address.city(),
+      street: faker.address.streetAddress(),
+    },
+    day: Object.values(WEEK)[faker.random.number(6)],
+    isActive: faker.random.boolean(),
   }
 }
 

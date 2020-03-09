@@ -7,19 +7,19 @@ export const putOffset = offset => {
   }
 }
 
-export const setWindowSize = (w, h) => {
+export const setWindowSize = (width, height) => {
   return {
     type: SET_WINDOW_SIZE,
     payload: {
-      width: w,
-      height: h,
+      width,
+      height,
     },
   }
 }
 
-export const toggleVirtualize = val => {
+export const toggleVirtualize = state => {
   return {
     type: VIRTUALIZE_TOGGLE,
-    payload: val,
+    payload: state,
   }
 }

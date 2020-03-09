@@ -53,13 +53,16 @@ const Header = () => {
         </div>
         <div className="row mt-3">
           <div className="offset-8 col-4 input-wrapper">
-            <input
-              type="checkbox"
-              defaultChecked={virtualize}
-              className="mr-3"
-              onChange={virtualizeCheckHandle}
-            />
-            <span className="text-muted">Use virtualization</span>
+            <label htmlFor="virtualize">
+              <input
+                id="virtualize"
+                type="checkbox"
+                defaultChecked={virtualize}
+                className="mr-3"
+                onChange={virtualizeCheckHandle}
+              />
+              <span className="text-muted">Use virtualization</span>
+            </label>
           </div>
         </div>
       </form>

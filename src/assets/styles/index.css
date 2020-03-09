@@ -40,6 +40,12 @@ th>button:active, th>button:focus {
   outline: 0;
 }
 
+.ellipsis {
+  height: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .table-col-1 {
   width: 50px;
 }
@@ -56,10 +62,10 @@ th>button:active, th>button:focus {
   width: 50px;
 }
 .table-col-6 {
-  width: 190px;
+  width: 340px;
 }
 .table-col-7 {
-  width: 220px;
+  width: 70px;
 }
 .table-col-8 {
   width: 50px;
