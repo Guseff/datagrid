@@ -30,20 +30,21 @@ const TableMain = () => {
   const dataAfterTextFilter = filterByText
     ? dataAfterActiveFilter.filter(
         string =>
-          string.name.toLowerCase().startsWith(filterByText.toLowerCase()) ||
-          string.email.toLowerCase().startsWith(filterByText.toLowerCase()) ||
+          string.name.toLowerCase().includes(filterByText.toLowerCase()) ||
+          string.email.toLowerCase().includes(filterByText.toLowerCase()) ||
           string.address.city
             .toLowerCase()
-            .startsWith(filterByText.toLowerCase()) ||
+            .includes(filterByText.toLowerCase()) ||
           string.address.street
             .toLowerCase()
-            .startsWith(filterByText.toLowerCase())
+            .includes(filterByText.toLowerCase())
       )
     : dataAfterActiveFilter
 
-  const dataAfterDaysFilter = filterByDays.length
-    ? dataAfterTextFilter.filter(string => filterByDays.includes(string.day))
-    : dataAfterTextFilter
+  const dataAfterDaysFilter =
+    filterByDays && filterByDays.length
+      ? dataAfterTextFilter.filter(string => filterByDays.includes(string.day))
+      : dataAfterTextFilter
 
   const sortedByRankData = byRank
     ? [...dataAfterDaysFilter].sort((a, b) =>
