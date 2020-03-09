@@ -14,7 +14,7 @@ const Search = () => {
   return (
     <>
       <label htmlFor="inputSearch" className="form-text text-muted">
-        Search by Name
+        Search string in Name, e-mail or address
         <input
           type="text"
           className="form-control"

@@ -53,10 +53,10 @@ th>button:active, th>button:focus {
   width: 80px;
 }
 .table-col-3 {
-  width: 150px;
+  width: 130px;
 }
 .table-col-4 {
-  width: 320px;
+  width: 300px;
 }
 .table-col-5 {
   width: 50px;
@@ -65,7 +65,7 @@ th>button:active, th>button:focus {
   width: 340px;
 }
 .table-col-7 {
-  width: 70px;
+  width: 110px;
 }
 .table-col-8 {
   width: 50px;

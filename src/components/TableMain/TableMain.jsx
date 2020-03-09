@@ -18,7 +18,9 @@ const TableMain = () => {
   window.addEventListener('resize', updateWindowSize)
 
   const data = useSelector(state => state.data)
-  const { filterIfActive, filterByText } = useSelector(state => state.filter)
+  const { filterIfActive, filterByText, filterByDays } = useSelector(
+    state => state.filter
+  )
   const { byRank } = useSelector(state => state.sort)
 
   const dataAfterActiveFilter = filterIfActive
@@ -29,16 +31,25 @@ const TableMain = () => {
     ? dataAfterActiveFilter.filter(
         string =>
           string.name.toLowerCase().startsWith(filterByText.toLowerCase()) ||
-          string.city.toLowerCase().startsWith(filterByText.toLowerCase()) ||
-          string.address.toLowerCase().startsWith(filterByText.toLowerCase())
+          string.email.toLowerCase().startsWith(filterByText.toLowerCase()) ||
+          string.address.city
+            .toLowerCase()
+            .startsWith(filterByText.toLowerCase()) ||
+          string.address.street
+            .toLowerCase()
+            .startsWith(filterByText.toLowerCase())
       )
     : dataAfterActiveFilter
 
+  const dataAfterDaysFilter = filterByDays.length
+    ? dataAfterTextFilter.filter(string => filterByDays.includes(string.day))
+    : dataAfterTextFilter
+
   const sortedByRankData = byRank
-    ? [...dataAfterTextFilter].sort((a, b) =>
+    ? [...dataAfterDaysFilter].sort((a, b) =>
         byRank === 'inc' ? a.rank - b.rank : b.rank - a.rank
       )
-    : dataAfterTextFilter
+    : dataAfterDaysFilter
 
   const scrollHandle = e => {
     e.preventDefault()

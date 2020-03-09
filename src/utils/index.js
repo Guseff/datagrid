@@ -1,4 +1,4 @@
-import { UP_ARROW, DOWN_ARROW, TWO_ARROWS, WEEK } from '../constants'
+import { UP_ARROW, DOWN_ARROW, TWO_ARROWS, DAYS } from '../constants'
 
 const faker = require('faker')
 
@@ -15,7 +15,7 @@ const makeFakeString = x => {
       city: faker.address.city(),
       street: faker.address.streetAddress(),
     },
-    day: Object.values(WEEK)[faker.random.number(6)],
+    day: DAYS[faker.random.number(6)],
     isActive: faker.random.boolean(),
   }
 }

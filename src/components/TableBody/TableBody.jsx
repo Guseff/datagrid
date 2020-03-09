@@ -69,7 +69,7 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
                 <td>
                   <div className="ellipsis">{`${string.address.street} ${string.address.city}`}</div>
                 </td>
-                <td>{string.day}</td>
+                <td>{string.day.label}</td>
                 <td>{string.isActive ? 'Yes' : 'No'}</td>
               </tr>
             ))}
