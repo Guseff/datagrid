@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ROW_HEIGHT } from '../../constants'
 
@@ -14,7 +14,8 @@ const TableMain = () => {
     const h = window.innerHeight
     dispatch(setWindowSize(w, h))
   }
-  updateWindowSize()
+
+  useEffect(updateWindowSize, [])
   window.addEventListener('resize', updateWindowSize)
 
   const data = useSelector(state => state.data)

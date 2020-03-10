@@ -13,11 +13,11 @@ export const WEEK = {
 }
 
 export const DAYS = [
-  { value: 'mon', label: 'Monday' },
-  { value: 'tue', label: 'Tuesday' },
-  { value: 'wed', label: 'Wednesday' },
-  { value: 'thu', label: 'Thursday' },
-  { value: 'fri', label: 'Friday' },
-  { value: 'sat', label: 'Saturday' },
-  { value: 'sun', label: 'Sunday' },
+  { order: 1, value: 'mon', label: 'Monday' },
+  { order: 2, value: 'tue', label: 'Tuesday' },
+  { order: 3, value: 'wed', label: 'Wednesday' },
+  { order: 4, value: 'thu', label: 'Thursday' },
+  { order: 5, value: 'fri', label: 'Friday' },
+  { order: 6, value: 'sat', label: 'Saturday' },
+  { order: 0, value: 'sun', label: 'Sunday' },
 ]

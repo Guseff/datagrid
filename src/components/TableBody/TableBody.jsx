@@ -5,7 +5,7 @@ import { ROW_HEIGHT, OTHER_HEIGHT } from '../../constants'
 
 const TableBody = ({ data, scrollHandle, sHeight }) => {
   const scroll = useSelector(state => state.vrt.offset)
-  const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT
+  const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT || 0
   const virtualize = useSelector(state => state.vrt.virtualize)
 
   const renderQty = wrapHeight / ROW_HEIGHT + 3
