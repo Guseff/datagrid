@@ -28,3 +28,10 @@ export const getArrow = rank => {
   if (rank === 'inc') return UP_ARROW
   return DOWN_ARROW
 }
+
+export const deleteArrayElement = (arr, el) => {
+  if (!arr.includes(el)) return [...arr]
+  const res = [...arr]
+  res.splice(res.indexOf(el), 1)
+  return res
+}

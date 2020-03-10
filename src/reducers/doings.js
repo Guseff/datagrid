@@ -4,16 +4,10 @@ import {
   MARK_NEXT_ROW,
   UN_MARK_NEXT_ROW,
 } from '../constants'
+import { deleteArrayElement } from '../utils'
 
 const initialState = {
   marked: [],
-}
-
-const deleteArrayElement = (arr, el) => {
-  if (!arr.includes(el)) return [...arr]
-  const res = [...arr]
-  res.splice(res.indexOf(el), 1)
-  return res
 }
 
 const doings = (state = initialState, action) => {
