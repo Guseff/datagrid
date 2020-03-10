@@ -1,12 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import cn from 'classnames'
+
 import { ROW_HEIGHT, OTHER_HEIGHT } from '../../constants'
+import {
+  markSingleRow,
+  unMarkSingleRow,
+  unMarkNextRow,
+  markNextRow,
+} from '../../actions/doings'
 
 const TableBody = ({ data, scrollHandle, sHeight }) => {
+  const dispatch = useDispatch()
   const scroll = useSelector(state => state.vrt.offset)
   const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT || 0
   const virtualize = useSelector(state => state.vrt.virtualize)
+  const { marked } = useSelector(state => state.doings)
 
   const renderQty = wrapHeight / ROW_HEIGHT + 3
 
@@ -23,6 +33,22 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
     scroll * ROW_HEIGHT,
     sHeight - renderQty * ROW_HEIGHT
   )
+
+  const clickHandle = e => {
+    e.preventDefault()
+    const { id } = e.currentTarget.dataset
+    if (!e.ctrlKey || !marked.length) {
+      if (marked.includes(id)) {
+        dispatch(unMarkSingleRow(id))
+      } else {
+        dispatch(markSingleRow(id))
+      }
+    } else if (marked.includes(id)) {
+      dispatch(unMarkNextRow(id))
+    } else {
+      dispatch(markNextRow(id))
+    }
+  }
 
   return (
     <div
@@ -56,7 +82,14 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
           </colgroup>
           <tbody>
             {renderPart.map(string => (
-              <tr key={string.id.toString()}>
+              <tr
+                key={string.id.toString()}
+                data-id={string.id}
+                className={cn({
+                  'table-secondary': marked.includes(string.id.toString()),
+                })}
+                onClick={clickHandle}
+              >
                 <th scope="row">{string.id}</th>
                 <td>{string.rank}</td>
                 <td>{string.name}</td>

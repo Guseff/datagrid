@@ -1,4 +1,4 @@
-import { ADD_STRING, DELETE_STRING } from '../constants'
+import { ADD_STRING, DELETE_STRINGS } from '../constants'
 
 const initialState = {
   data: {},
@@ -9,7 +9,7 @@ const data = (state = initialState, action) => {
     case ADD_STRING:
       return { ...state }
 
-    case DELETE_STRING:
+    case DELETE_STRINGS:
       return { ...state }
 
     default:
