@@ -3,7 +3,6 @@ import { PUT_OFFSET, SET_WINDOW_SIZE, VIRTUALIZE_TOGGLE } from '../constants'
 const initialState = {
   offset: 0,
   virtualize: true,
-  width: null,
   height: null,
 }
 
@@ -18,8 +17,7 @@ const vrt = (state = initialState, action) => {
     case SET_WINDOW_SIZE:
       return {
         ...state,
-        width: action.payload.width,
-        height: action.payload.height,
+        height: action.payload,
       }
 
     default:

@@ -10,9 +10,8 @@ const TableMain = () => {
   const dispatch = useDispatch()
 
   const updateWindowSize = () => {
-    const w = window.innerWidth
     const h = window.innerHeight
-    dispatch(setWindowSize(w, h))
+    dispatch(setWindowSize(h))
   }
 
   useEffect(updateWindowSize, [])
