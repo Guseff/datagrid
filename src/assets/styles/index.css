@@ -70,3 +70,9 @@ th>button:active, th>button:focus {
 .table-col-8 {
   width: 50px;
 }
+
+.del-button {
+  width: 64px;
+  height: 32px;
+  background: url('../icons/del.png') center center no-repeat;
+}

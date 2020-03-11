@@ -1,7 +1,16 @@
-import { ADD_STRING, DELETE_STRINGS } from '../constants'
+import {
+  ADD_STRING,
+  DELETE_STRINGS,
+  MARK_SINGLE_ROW,
+  UN_MARK_SINGLE_ROW,
+  MARK_NEXT_ROW,
+  UN_MARK_NEXT_ROW,
+} from '../constants'
+import { deleteArrayElement } from '../utils'
 
 const initialState = {
-  data: {},
+  main: [],
+  marked: [],
 }
 
 const data = (state = initialState, action) => {
@@ -11,6 +20,21 @@ const data = (state = initialState, action) => {
 
     case DELETE_STRINGS:
       return { ...state }
+
+    case MARK_SINGLE_ROW:
+      return { ...state, marked: [action.payload] }
+
+    case MARK_NEXT_ROW:
+      return { ...state, marked: [...state.marked, action.payload] }
+
+    case UN_MARK_SINGLE_ROW:
+      return { ...state, marked: [] }
+
+    case UN_MARK_NEXT_ROW:
+      return {
+        ...state,
+        marked: deleteArrayElement(state.marked, action.payload),
+      }
 
     default:
       return state

@@ -70,6 +70,9 @@ const Header = () => {
             </label>
           </div>
         </div>
+        <div className="row mt-3">
+          <button type="button" aria-label="delete" className="del-button" />
+        </div>
       </form>
     </div>
   )

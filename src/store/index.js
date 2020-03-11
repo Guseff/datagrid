@@ -5,7 +5,7 @@ import { makeData } from '../utils'
 
 const initialState = {
   vrt: { offset: 0, virtualize: true },
-  data: makeData(),
+  data: { main: makeData(), marked: [] },
 }
 
 const store = createStore(

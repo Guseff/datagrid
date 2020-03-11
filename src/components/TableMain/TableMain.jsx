@@ -17,7 +17,7 @@ const TableMain = () => {
   useEffect(updateWindowSize, [])
   window.addEventListener('resize', updateWindowSize)
 
-  const data = useSelector(state => state.data)
+  const data = useSelector(state => state.data.main)
   const { filterIfActive, filterByText, filterByDays } = useSelector(
     state => state.filter
   )

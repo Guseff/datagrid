@@ -9,14 +9,14 @@ import {
   unMarkSingleRow,
   unMarkNextRow,
   markNextRow,
-} from '../../actions/doings'
+} from '../../actions'
 
 const TableBody = ({ data, scrollHandle, sHeight }) => {
   const dispatch = useDispatch()
   const scroll = useSelector(state => state.vrt.offset)
   const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT || 0
   const virtualize = useSelector(state => state.vrt.virtualize)
-  const { marked } = useSelector(state => state.doings)
+  const { marked } = useSelector(state => state.data)
 
   const renderQty = wrapHeight / ROW_HEIGHT + 3
 
