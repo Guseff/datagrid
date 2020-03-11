@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 
 import { DAYS } from '../../constants'
-import { filterIfActive, toggleVirtualize, filterByDays } from '../../actions'
+import {
+  filterIfActive,
+  toggleVirtualize,
+  filterByDays,
+  deleteStrings,
+} from '../../actions'
 
 import Search from '../Search'
 
@@ -25,6 +30,10 @@ const Header = () => {
   const selectChange = options => {
     setSelected(options)
     dispatch(filterByDays(options))
+  }
+
+  const deleteButtonHandle = () => {
+    dispatch(deleteStrings())
   }
 
   return (
@@ -71,7 +80,12 @@ const Header = () => {
           </div>
         </div>
         <div className="row mt-3">
-          <button type="button" aria-label="delete" className="del-button" />
+          <button
+            type="button"
+            aria-label="delete"
+            className="del-button"
+            onClick={deleteButtonHandle}
+          />
         </div>
       </form>
     </div>

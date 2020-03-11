@@ -3,6 +3,7 @@ import {
   MARK_NEXT_ROW,
   UN_MARK_SINGLE_ROW,
   UN_MARK_NEXT_ROW,
+  DELETE_STRINGS,
 } from '../constants'
 
 export const markSingleRow = id => ({
@@ -23,4 +24,8 @@ export const unMarkSingleRow = id => ({
 export const unMarkNextRow = id => ({
   type: UN_MARK_NEXT_ROW,
   payload: id,
+})
+
+export const deleteStrings = () => ({
+  type: DELETE_STRINGS,
 })

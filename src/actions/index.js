@@ -1,4 +1,4 @@
 export * from './sort'
 export * from './offset'
 export * from './filter'
-export * from './doings'
+export * from './data'

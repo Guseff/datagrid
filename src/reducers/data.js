@@ -6,7 +6,7 @@ import {
   MARK_NEXT_ROW,
   UN_MARK_NEXT_ROW,
 } from '../constants'
-import { deleteArrayElement } from '../utils'
+import { deleteElementFromArray, deleteElementFromArrayByID } from '../utils'
 
 const initialState = {
   main: [],
@@ -19,7 +19,11 @@ const data = (state = initialState, action) => {
       return { ...state }
 
     case DELETE_STRINGS:
-      return { ...state }
+      return {
+        ...state,
+        main: deleteElementFromArrayByID([...state.main], [...state.marked]),
+        marked: [],
+      }
 
     case MARK_SINGLE_ROW:
       return { ...state, marked: [action.payload] }
@@ -33,7 +37,7 @@ const data = (state = initialState, action) => {
     case UN_MARK_NEXT_ROW:
       return {
         ...state,
-        marked: deleteArrayElement(state.marked, action.payload),
+        marked: deleteElementFromArray(state.marked, action.payload),
       }
 
     default:

@@ -29,9 +29,18 @@ export const getArrow = rank => {
   return DOWN_ARROW
 }
 
-export const deleteArrayElement = (arr, el) => {
+export const deleteElementFromArray = (arr, el) => {
   if (!arr.includes(el)) return [...arr]
   const res = [...arr]
   res.splice(res.indexOf(el), 1)
+  return res
+}
+
+export const deleteElementFromArrayByID = (array, IDs) => {
+  let res = [...array]
+  IDs.forEach(id => {
+    const elem = res.find(x => x.id.toString() === id)
+    res = deleteElementFromArray(res, elem)
+  })
   return res
 }
