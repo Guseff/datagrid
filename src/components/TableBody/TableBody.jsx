@@ -90,7 +90,9 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
                 })}
                 onClick={clickHandle}
               >
-                <th scope="row">{string.id}</th>
+                <th scope="row" className="sticky">
+                  {string.id}
+                </th>
                 <td>{string.rank}</td>
                 <td>{string.name}</td>
                 <td>

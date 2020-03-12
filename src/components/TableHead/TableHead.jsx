@@ -33,7 +33,7 @@ const TableHead = () => {
       return
     }
 
-    if (!e.ctrlKey) {
+    if (!e.shiftKey) {
       if (!sort[0][key]) {
         dispatch(sortOne(key, 'inc'))
       } else if (sort[0][key] === 'inc') {

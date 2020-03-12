@@ -71,8 +71,19 @@ th>button:active, th>button:focus {
   width: 50px;
 }
 
+.del-button-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .del-button {
   width: 64px;
   height: 32px;
   background: url('../icons/del.png') center center no-repeat;
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
 }

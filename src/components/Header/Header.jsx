@@ -39,7 +39,7 @@ const Header = () => {
 
   return (
     <div className="container my-3">
-      <h3>RS School Test Table With Blackjack And Girls</h3>
+      <h3>RS School Test Data Grid With Blackjack And Girls</h3>
       <form action="\">
         <div className="row">
           <div className="col-6">
@@ -87,7 +87,8 @@ const Header = () => {
               ? sortedBy.map(el => ` ${Object.keys(el)[0]}`)
               : null}
           </div>
-          <div className="col-4">
+          <div className="col-4 del-button-wrap">
+            Delete marked rows (mark with Ctrl)
             <button
               type="button"
               aria-label="delete"
