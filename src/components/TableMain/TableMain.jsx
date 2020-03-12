@@ -5,6 +5,7 @@ import { ROW_HEIGHT } from '../../constants'
 import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
 import { putOffset, setWindowSize } from '../../actions/offset'
+import { sortElements } from '../../utils'
 
 const TableMain = () => {
   const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const TableMain = () => {
   const { filterIfActive, filterByText, filterByDays } = useSelector(
     state => state.filter
   )
-  const { byRank } = useSelector(state => state.sort)
+  const { sort } = useSelector(state => state)
 
   const dataAfterActiveFilter = filterIfActive
     ? data.filter(string => string.isActive)
@@ -46,10 +47,8 @@ const TableMain = () => {
       ? dataAfterTextFilter.filter(string => filterByDays.includes(string.day))
       : dataAfterTextFilter
 
-  const sortedByRankData = byRank
-    ? [...dataAfterDaysFilter].sort((a, b) =>
-        byRank === 'inc' ? a.rank - b.rank : b.rank - a.rank
-      )
+  const sortedData = sort.length
+    ? sortElements(dataAfterDaysFilter, sort)
     : dataAfterDaysFilter
 
   const scrollHandle = e => {
@@ -57,7 +56,7 @@ const TableMain = () => {
     const d = e.target.scrollTop
     const s = Math.min(
       Math.floor(d / ROW_HEIGHT),
-      sortedByRankData.length * ROW_HEIGHT
+      sortedData.length * ROW_HEIGHT
     )
     dispatch(putOffset(s))
   }
@@ -67,8 +66,8 @@ const TableMain = () => {
       <TableHead />
       <TableBody
         scrollHandle={scrollHandle}
-        data={sortedByRankData}
-        sHeight={sortedByRankData.length * ROW_HEIGHT}
+        data={sortedData}
+        sHeight={sortedData.length * ROW_HEIGHT}
       />
     </>
   )

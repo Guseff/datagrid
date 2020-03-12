@@ -1,32 +1,42 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { sortByRank, sortByName } from '../../actions'
 import { getArrow } from '../../utils'
+import { sortOne, sortReset } from '../../actions'
 
 const TableHead = () => {
   const dispatch = useDispatch()
-  const { byRank, byName } = useSelector(state => state.sort)
+  const { sort } = useSelector(state => state)
+  const byRank = sort.find(el => 'rank' in el)
+    ? sort.find(el => 'rank' in el).rank
+    : undefined
+  const byName = sort.find(el => 'name' in el)
+    ? sort.find(el => 'name' in el).name
+    : undefined
+  const byDay = sort.find(el => 'day' in el)
+    ? sort.find(el => 'day' in el).day
+    : undefined
 
   const rankArr = getArrow(byRank)
   const nameArr = getArrow(byName)
+  const dayArr = getArrow(byDay)
 
-  const rankButtonHandle = () => {
-    if (!byRank) {
-      dispatch(sortByRank('inc'))
-    } else if (byRank === 'inc') {
-      dispatch(sortByRank('dec'))
-    } else {
-      dispatch(sortByRank(undefined))
+  const buttonHandle = e => {
+    const key = e.currentTarget.dataset.id
+    if (!sort.length) {
+      dispatch(sortOne(key, 'inc'))
+      return
     }
-  }
 
-  const nameButtonHandle = () => {
-    if (!byName) {
-      dispatch(sortByName('inc'))
-    } else if (byName === 'inc') {
-      dispatch(sortByName('dec'))
+    if (!e.ctrlKey) {
+      if (!sort[0][key]) {
+        dispatch(sortOne(key, 'inc'))
+      } else if (sort[0][key] === 'inc') {
+        dispatch(sortOne(key, 'dec'))
+      } else {
+        dispatch(sortReset())
+      }
     } else {
-      dispatch(sortByName(undefined))
+      console.log('yes')
     }
   }
 
@@ -47,19 +57,23 @@ const TableHead = () => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">
-              <button type="button" onClick={rankButtonHandle}>
+              <button type="button" data-id="rank" onClick={buttonHandle}>
                 {`Rank ${rankArr}`}
               </button>
             </th>
             <th scope="col">
-              <button type="button" onClick={nameButtonHandle}>
+              <button type="button" data-id="name" onClick={buttonHandle}>
                 {`Name ${nameArr}`}
               </button>
             </th>
             <th scope="col">E-mail</th>
             <th scope="col">Avatar</th>
             <th scope="col">Address</th>
-            <th scope="col">Day</th>
+            <th scope="col">
+              <button type="button" data-id="day" onClick={buttonHandle}>
+                {`Day ${dayArr}`}
+              </button>
+            </th>
             <th scope="col">Active</th>
           </tr>
         </thead>

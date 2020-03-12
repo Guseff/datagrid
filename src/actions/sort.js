@@ -1,11 +1,10 @@
-import { SORT_BY_NAME, SORT_BY_RANK } from '../constants'
+import { SORT_ONE, SORT_RESET } from '../constants'
 
-export const sortByRank = str => ({
-  type: SORT_BY_RANK,
-  payload: str,
+export const sortOne = (key, value) => ({
+  type: SORT_ONE,
+  payload: { [key]: value },
 })
 
-export const sortByName = str => ({
-  type: SORT_BY_NAME,
-  payload: str,
+export const sortReset = () => ({
+  type: SORT_RESET,
 })

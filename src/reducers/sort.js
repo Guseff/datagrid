@@ -1,17 +1,17 @@
-import { SORT_BY_NAME, SORT_BY_RANK } from '../constants'
+import { SORT_ONE, SORT_GROUP, SORT_RESET } from '../constants'
 
-const initialState = {
-  byName: undefined,
-  byRank: undefined,
-}
+const initialState = []
 
 const sort = (state = initialState, action) => {
   switch (action.type) {
-    case SORT_BY_NAME:
-      return { ...state, byName: action.payload }
+    case SORT_ONE:
+      return [action.payload]
 
-    case SORT_BY_RANK:
-      return { ...state, byRank: action.payload }
+    case SORT_GROUP:
+      return [...state].push(action.payload)
+
+    case SORT_RESET:
+      return []
 
     default:
       return state

@@ -6,8 +6,9 @@ export const MARK_NEXT_ROW = 'MARK_NEXT_ROW'
 export const UN_MARK_SINGLE_ROW = 'UN_MARK_SINGLE_ROW'
 export const UN_MARK_NEXT_ROW = 'UN_MARK_NEXT_ROW'
 
-export const SORT_BY_NAME = 'SORT_BY_NAME'
-export const SORT_BY_RANK = 'SORT_BY_RANK'
+export const SORT_RESET = 'SORT_RESET'
+export const SORT_ONE = 'SORT_ONE'
+export const SORT_GROUP = 'SORT_GROUP'
 
 export const FILTER_IF_ACTIVE = 'FILTER_IF_ACTIVE'
 export const FILTER_BY_TEXT = 'FILTER_BY_TEXT'

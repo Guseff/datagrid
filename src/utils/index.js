@@ -24,6 +24,7 @@ export const makeData = () =>
   [...new Array(1500)].map((_, index) => makeFakeString(index))
 
 export const getArrow = rank => {
+  console.log(rank)
   if (!rank) return TWO_ARROWS
   if (rank === 'inc') return UP_ARROW
   return DOWN_ARROW
@@ -43,4 +44,26 @@ export const deleteElementFromArrayByID = (array, IDs) => {
     res = deleteElementFromArray(res, elem)
   })
   return res
+}
+
+export const sortElements = (elements, params) => {
+  const key = Object.keys(params[0])[0]
+  return [...elements].sort((a, b) => {
+    if (key === 'day') {
+      if (params[0][key] === 'inc') {
+        if (a[key].order > b[key].order) return 1
+        if (a[key].order < b[key].order) return -1
+      } else {
+        if (a[key].order > b[key].order) return -1
+        if (a[key].order < b[key].order) return 1
+      }
+    } else if (params[0][key] === 'inc') {
+      if (a[key] > b[key]) return 1
+      if (a[key] < b[key]) return -1
+    } else {
+      if (a[key] > b[key]) return -1
+      if (a[key] < b[key]) return 1
+    }
+    return 0
+  })
 }
