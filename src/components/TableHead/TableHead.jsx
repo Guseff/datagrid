@@ -1,7 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getArrow } from '../../utils'
-import { sortOne, sortReset } from '../../actions'
+import {
+  sortOne,
+  sortGroupAdd,
+  sortReset,
+  sortGroupChange,
+  sortGroupRemove,
+} from '../../actions'
 
 const TableHead = () => {
   const dispatch = useDispatch()
@@ -35,8 +41,16 @@ const TableHead = () => {
       } else {
         dispatch(sortReset())
       }
+      return
+    }
+
+    const index = sort.indexOf(sort.find(el => Object.keys(el).includes(key)))
+    if (index === -1) {
+      dispatch(sortGroupAdd(key, 'inc'))
+    } else if (sort[index][key] === 'inc') {
+      dispatch(sortGroupChange(key, 'dec'))
     } else {
-      console.log('yes')
+      dispatch(sortGroupRemove(key))
     }
   }
 

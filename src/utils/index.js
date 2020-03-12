@@ -24,16 +24,19 @@ export const makeData = () =>
   [...new Array(1500)].map((_, index) => makeFakeString(index))
 
 export const getArrow = rank => {
-  console.log(rank)
   if (!rank) return TWO_ARROWS
   if (rank === 'inc') return UP_ARROW
   return DOWN_ARROW
 }
 
-export const deleteElementFromArray = (arr, el) => {
+export const deleteElementFromArray = (arr, el, newEl = undefined) => {
   if (!arr.includes(el)) return [...arr]
   const res = [...arr]
-  res.splice(res.indexOf(el), 1)
+  if (newEl) {
+    res.splice(res.indexOf(el), 1, newEl)
+  } else {
+    res.splice(res.indexOf(el), 1)
+  }
   return res
 }
 
@@ -47,22 +50,30 @@ export const deleteElementFromArrayByID = (array, IDs) => {
 }
 
 export const sortElements = (elements, params) => {
-  const key = Object.keys(params[0])[0]
-  return [...elements].sort((a, b) => {
+  const sortFunction = (a, b, i) => {
+    const key = Object.keys(params[i])[0]
     if (key === 'day') {
-      if (params[0][key] === 'inc') {
-        if (a[key].order > b[key].order) return 1
-        if (a[key].order < b[key].order) return -1
-      } else {
-        if (a[key].order > b[key].order) return -1
-        if (a[key].order < b[key].order) return 1
-      }
-    } else if (params[0][key] === 'inc') {
-      if (a[key] > b[key]) return 1
-      if (a[key] < b[key]) return -1
-    } else {
-      if (a[key] > b[key]) return -1
-      if (a[key] < b[key]) return 1
+      return params[i][key] === 'inc'
+        ? a[key].order - b[key].order
+        : b[key].order - a[key].order
+    }
+    if (key === 'rank') {
+      return params[i][key] === 'inc' ? a[key] - b[key] : b[key] - a[key]
+    }
+    if (key === 'name') {
+      return params[i][key] === 'inc'
+        ? a[key].localeCompare(b[key])
+        : b[key].localeCompare(a[key])
+    }
+    return 0
+  }
+
+  return [...elements].sort((a, b) => {
+    let index = 0
+    while (index < params.length) {
+      const res = sortFunction(a, b, index)
+      if (res !== 0) return res
+      index += 1
     }
     return 0
   })

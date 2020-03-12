@@ -17,6 +17,7 @@ const Header = () => {
 
   const activeOnly = useSelector(state => state.filter.filterIfActive)
   const virtualize = useSelector(state => state.vrt.virtualize)
+  const sortedBy = useSelector(state => state.sort)
   const [selected, setSelected] = useState()
 
   const activeCheckHandle = () => {
@@ -80,12 +81,20 @@ const Header = () => {
           </div>
         </div>
         <div className="row mt-3">
-          <button
-            type="button"
-            aria-label="delete"
-            className="del-button"
-            onClick={deleteButtonHandle}
-          />
+          <div className="col-8">
+            Sorted by:
+            {sortedBy.length
+              ? sortedBy.map(el => ` ${Object.keys(el)[0]}`)
+              : null}
+          </div>
+          <div className="col-4">
+            <button
+              type="button"
+              aria-label="delete"
+              className="del-button"
+              onClick={deleteButtonHandle}
+            />
+          </div>
         </div>
       </form>
     </div>

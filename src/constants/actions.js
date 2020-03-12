@@ -8,7 +8,9 @@ export const UN_MARK_NEXT_ROW = 'UN_MARK_NEXT_ROW'
 
 export const SORT_RESET = 'SORT_RESET'
 export const SORT_ONE = 'SORT_ONE'
-export const SORT_GROUP = 'SORT_GROUP'
+export const SORT_GROUP_ADD = 'SORT_GROUP_ADD'
+export const SORT_GROUP_CHANGE = 'SORT_GROUP_CHANGE'
+export const SORT_GROUP_REMOVE = 'SORT_GROUP_REMOVE'
 
 export const FILTER_IF_ACTIVE = 'FILTER_IF_ACTIVE'
 export const FILTER_BY_TEXT = 'FILTER_BY_TEXT'
