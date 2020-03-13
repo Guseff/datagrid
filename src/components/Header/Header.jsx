@@ -11,6 +11,7 @@ import {
 } from '../../actions'
 
 import Search from '../Search'
+import CheckBox from '../CheckBox/CheckBox'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -56,38 +57,23 @@ const Header = () => {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="offset-8 col-4 input-wrapper">
-            <input
-              type="checkbox"
-              defaultChecked={activeOnly}
-              className="mr-3"
-              onChange={activeCheckHandle}
-            />
-            <span className="text-muted">Active members only</span>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="offset-8 col-4 input-wrapper">
-            <label htmlFor="virtualize">
-              <input
-                id="virtualize"
-                type="checkbox"
-                defaultChecked={virtualize}
-                className="mr-3"
-                onChange={virtualizeCheckHandle}
-              />
-              <span className="text-muted">Use virtualization</span>
-            </label>
-          </div>
-        </div>
-        <div className="row mt-3">
           <div className="col-8">
-            Sorted by:
+            Sorted by (press Shift if several columns):
             {sortedBy.length
               ? sortedBy.map(el => ` ${Object.keys(el)[0]}`)
               : null}
           </div>
-          <div className="col-4 del-button-wrap">
+          <div className="col-4 input-wrapper">
+            <CheckBox
+              id="active"
+              defaultValue={activeOnly}
+              changeHandle={activeCheckHandle}
+              text="Active members only"
+            />
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-8 del-button-wrap">
             Delete marked rows (mark with Ctrl)
             <button
               type="button"
@@ -96,7 +82,16 @@ const Header = () => {
               onClick={deleteButtonHandle}
             />
           </div>
+          <div className="col-4 input-wrapper">
+            <CheckBox
+              id="virtualize"
+              defaultValue={virtualize}
+              changeHandle={virtualizeCheckHandle}
+              text="Use virtualization"
+            />
+          </div>
         </div>
+        <div className="row mt-3">a</div>
       </form>
     </div>
   )
