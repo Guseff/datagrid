@@ -65,7 +65,7 @@ const Header = () => {
           </div>
           <div className="col-4 input-wrapper">
             <CheckBox
-              id="active"
+              id="ch-active"
               defaultValue={activeOnly}
               changeHandle={activeCheckHandle}
               text="Active members only"
@@ -84,14 +84,72 @@ const Header = () => {
           </div>
           <div className="col-4 input-wrapper">
             <CheckBox
-              id="virtualize"
+              id="ch-virtualize"
               defaultValue={virtualize}
               changeHandle={virtualizeCheckHandle}
               text="Use virtualization"
             />
           </div>
         </div>
-        <div className="row mt-3">a</div>
+        <div className="row mt-3">
+          Display / hide columns:
+          <div className="col">
+            <CheckBox
+              id="ch-rank"
+              defaultValue
+              changeHandle={() => {}}
+              text="Rank"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-name"
+              defaultValue
+              changeHandle={() => {}}
+              text="Name"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-mail"
+              defaultValue
+              changeHandle={() => {}}
+              text="E-mail"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-avatar"
+              defaultValue
+              changeHandle={() => {}}
+              text="Avatar"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-addr"
+              defaultValue
+              changeHandle={() => {}}
+              text="Address"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-day"
+              defaultValue
+              changeHandle={() => {}}
+              text="Day"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-active"
+              defaultValue
+              changeHandle={() => {}}
+              text="Active"
+            />
+          </div>
+        </div>
       </form>
     </div>
   )

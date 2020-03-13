@@ -8,7 +8,7 @@ const CheckBox = ({ id, defaultValue, changeHandle, text }) => {
         id={id}
         type="checkbox"
         defaultChecked={defaultValue}
-        className="mr-3"
+        className="mr-1"
         onChange={changeHandle}
       />
       <span className="text-muted">{text}</span>
