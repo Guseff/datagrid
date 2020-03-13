@@ -4,6 +4,7 @@ import {
   UN_MARK_SINGLE_ROW,
   UN_MARK_NEXT_ROW,
   DELETE_STRINGS,
+  SHOW_COLUMN,
 } from '../constants'
 
 export const markSingleRow = id => ({
@@ -28,4 +29,10 @@ export const unMarkNextRow = id => ({
 
 export const deleteStrings = () => ({
   type: DELETE_STRINGS,
+})
+
+export const showColumn = (col, status) => ({
+  type: SHOW_COLUMN,
+  col,
+  status,
 })

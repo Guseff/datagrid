@@ -78,3 +78,23 @@ export const sortElements = (elements, params) => {
     return 0
   })
 }
+
+export const saveSVG = data => {
+  const csvFile = `#,Rank,Name,E-mail,Avatar,Day,Active,Address\n${data
+    .map(
+      el =>
+        `${el.id},${el.rank},${el.name},${el.email},${el.avatar},${
+          el.day.label
+        },${el.isActive ? 'Yes' : 'No'},${el.address.city} ${el.address.street}`
+    )
+    .join('\n')}`
+  const blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' })
+  const link = document.createElement('a')
+  const url = URL.createObjectURL(blob)
+  link.setAttribute('href', url)
+  link.setAttribute('download', 'test.csv')
+  link.style.visibility = 'hidden'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}

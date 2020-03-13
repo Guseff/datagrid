@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-import cn from 'classnames'
 
 import { ROW_HEIGHT, OTHER_HEIGHT } from '../../constants'
 import {
@@ -10,6 +9,7 @@ import {
   unMarkNextRow,
   markNextRow,
 } from '../../actions'
+import TableString from '../TableString'
 
 const TableBody = ({ data, scrollHandle, sHeight }) => {
   const dispatch = useDispatch()
@@ -17,6 +17,7 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
   const wrapHeight = useSelector(state => state.vrt.height) - OTHER_HEIGHT || 0
   const virtualize = useSelector(state => state.vrt.virtualize)
   const { marked } = useSelector(state => state.data)
+  const { show } = useSelector(state => state)
 
   const renderQty = wrapHeight / ROW_HEIGHT + 3
 
@@ -72,41 +73,23 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
         >
           <colgroup>
             <col className="table-col-1" />
-            <col className="table-col-2" />
-            <col className="table-col-3" />
-            <col className="table-col-4" />
-            <col className="table-col-5" />
-            <col className="table-col-6" />
-            <col className="table-col-7" />
-            <col className="table-col-8" />
+            {show.rank ? <col className="table-col-2" /> : null}
+            {show.name ? <col className="table-col-3" /> : null}
+            {show.mail ? <col className="table-col-4" /> : null}
+            {show.avatar ? <col className="table-col-5" /> : null}
+            {show.day ? <col className="table-col-6" /> : null}
+            {show.active ? <col className="table-col-7" /> : null}
+            {show.address ? <col className="table-col-8" /> : null}
           </colgroup>
           <tbody>
             {renderPart.map(string => (
-              <tr
-                key={string.id.toString()}
-                data-id={string.id}
-                className={cn({
-                  'table-secondary': marked.includes(string.id.toString()),
-                })}
-                onClick={clickHandle}
-              >
-                <th scope="row" className="sticky">
-                  {string.id}
-                </th>
-                <td>{string.rank}</td>
-                <td>{string.name}</td>
-                <td>
-                  <div className="ellipsis">{string.email}</div>
-                </td>
-                <td>
-                  <img alt="" src={string.avatar} />
-                </td>
-                <td>
-                  <div className="ellipsis">{`${string.address.street} ${string.address.city}`}</div>
-                </td>
-                <td>{string.day.label}</td>
-                <td>{string.isActive ? 'Yes' : 'No'}</td>
-              </tr>
+              <TableString
+                key={string.id}
+                string={string}
+                marked={marked}
+                show={show}
+                clickHandle={clickHandle}
+              />
             ))}
           </tbody>
         </table>

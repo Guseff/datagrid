@@ -11,6 +11,7 @@ import {
 
 const TableHead = () => {
   const dispatch = useDispatch()
+  const { show } = useSelector(state => state)
   const { sort } = useSelector(state => state)
   const byRank = sort.find(el => 'rank' in el)
     ? sort.find(el => 'rank' in el).rank
@@ -55,40 +56,46 @@ const TableHead = () => {
   }
 
   return (
-    <div>
+    <div className="wrapper-head">
       <table className="table table-hover table-sm table-header">
         <colgroup>
           <col className="table-col-1" />
-          <col className="table-col-2" />
-          <col className="table-col-3" />
-          <col className="table-col-4" />
-          <col className="table-col-5" />
-          <col className="table-col-6" />
-          <col className="table-col-7" />
-          <col className="table-col-8" />
+          {show.rank ? <col className="table-col-2" /> : null}
+          {show.name ? <col className="table-col-3" /> : null}
+          {show.mail ? <col className="table-col-4" /> : null}
+          {show.avatar ? <col className="table-col-5" /> : null}
+          {show.day ? <col className="table-col-6" /> : null}
+          {show.active ? <col className="table-col-7" /> : null}
+          {show.address ? <col className="table-col-8" /> : null}
         </colgroup>
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">
-              <button type="button" data-id="rank" onClick={buttonHandle}>
-                {`Rank ${rankArr}`}
-              </button>
-            </th>
-            <th scope="col">
-              <button type="button" data-id="name" onClick={buttonHandle}>
-                {`Name ${nameArr}`}
-              </button>
-            </th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">Address</th>
-            <th scope="col">
-              <button type="button" data-id="day" onClick={buttonHandle}>
-                {`Day ${dayArr}`}
-              </button>
-            </th>
-            <th scope="col">Active</th>
+            {show.rank ? (
+              <th scope="col">
+                <button type="button" data-id="rank" onClick={buttonHandle}>
+                  {`Rank ${rankArr}`}
+                </button>
+              </th>
+            ) : null}
+            {show.name ? (
+              <th scope="col">
+                <button type="button" data-id="name" onClick={buttonHandle}>
+                  {`Name ${nameArr}`}
+                </button>
+              </th>
+            ) : null}
+            {show.mail ? <th scope="col">E-mail</th> : null}
+            {show.avatar ? <th scope="col">Avatar</th> : null}
+            {show.day ? (
+              <th scope="col">
+                <button type="button" data-id="day" onClick={buttonHandle}>
+                  {`Day ${dayArr}`}
+                </button>
+              </th>
+            ) : null}
+            {show.active ? <th scope="col">Active</th> : null}
+            {show.address ? <th scope="col">Address</th> : null}
           </tr>
         </thead>
       </table>

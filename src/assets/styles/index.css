@@ -4,18 +4,17 @@
 }
 
 .table.table-header {
+  table-layout: fixed;
+  min-width: 1091px;
   width: 1091px;
   margin-bottom: 0;
   border-bottom: 0;
 }
 
-.table-wrapper {
-  overflow-y: scroll;
-  border-top: 0;
-}
-
-.table-body {
-  min-width: 100%;
+.table.table-body {
+  table-layout: fixed;
+  min-width: 1091px;
+  width: 1091px;
   border-top: 0;
 }
 
@@ -47,28 +46,43 @@ th>button:active, th>button:focus {
 }
 
 .table-col-1 {
+  min-width: 50px;
   width: 50px;
 }
 .table-col-2 {
-  width: 80px;
+  /* min-width: 800px; */
+  min-width: 100px;
+  width: 100px;
 }
 .table-col-3 {
-  width: 130px;
+  /* min-width: 130px; */
+  min-width: 150px;
+  width: 150px;
 }
 .table-col-4 {
+  /* min-width: 300px; */
+  min-width: 300px;
   width: 300px;
 }
 .table-col-5 {
-  width: 50px;
+  /* min-width: 50px; */
+  min-width: 100px;
+  width: 100px;
 }
 .table-col-6 {
-  width: 340px;
+  /* min-width: 110px; */
+  min-width: 150px;
+  width: 150px;
 }
 .table-col-7 {
-  width: 110px;
+  /* min-width: 50px; */
+  min-width: 80px;
+  width: 80px;
 }
 .table-col-8 {
-  width: 50px;
+  /* min-width: 340px; */
+  min-width: 350px;
+  width: 350px;
 }
 
 .del-button-wrap {
@@ -86,4 +100,15 @@ th>button:active, th>button:focus {
 .sticky {
   position: sticky;
   left: 0;
+}
+
+.wrapper-main {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-wrapper {
+  border-top: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

@@ -6,6 +6,7 @@ import TableBody from '../TableBody'
 import TableHead from '../TableHead/TableHead'
 import { putOffset, setWindowSize } from '../../actions/offset'
 import { sortElements } from '../../utils'
+import SaveButton from '../SaveButton'
 
 const TableMain = () => {
   const dispatch = useDispatch()
@@ -62,14 +63,15 @@ const TableMain = () => {
   }
 
   return (
-    <>
+    <div>
       <TableHead />
       <TableBody
         scrollHandle={scrollHandle}
         data={sortedData}
         sHeight={sortedData.length * ROW_HEIGHT}
       />
-    </>
+      <SaveButton data={sortedData} />
+    </div>
   )
 }
 

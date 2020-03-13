@@ -8,10 +8,11 @@ import {
   toggleVirtualize,
   filterByDays,
   deleteStrings,
+  showColumn,
 } from '../../actions'
 
 import Search from '../Search'
-import CheckBox from '../CheckBox/CheckBox'
+import CheckBox from '../CheckBox'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const Header = () => {
   const activeOnly = useSelector(state => state.filter.filterIfActive)
   const virtualize = useSelector(state => state.vrt.virtualize)
   const sortedBy = useSelector(state => state.sort)
+  const { show } = useSelector(state => state)
   const [selected, setSelected] = useState()
 
   const activeCheckHandle = () => {
@@ -36,6 +38,11 @@ const Header = () => {
 
   const deleteButtonHandle = () => {
     dispatch(deleteStrings())
+  }
+
+  const showCheckHandle = e => {
+    const id = e.currentTarget.id.slice(3)
+    dispatch(showColumn(id, !show[id]))
   }
 
   return (
@@ -56,7 +63,7 @@ const Header = () => {
             />
           </div>
         </div>
-        <div className="row mt-3">
+        <div className="row mt-1">
           <div className="col-8">
             Sorted by (press Shift if several columns):
             {sortedBy.length
@@ -65,14 +72,14 @@ const Header = () => {
           </div>
           <div className="col-4 input-wrapper">
             <CheckBox
-              id="ch-active"
+              id="ch-active-only"
               defaultValue={activeOnly}
               changeHandle={activeCheckHandle}
               text="Active members only"
             />
           </div>
         </div>
-        <div className="row mt-3">
+        <div className="row mt-1">
           <div className="col-8 del-button-wrap">
             Delete marked rows (mark with Ctrl)
             <button
@@ -91,62 +98,62 @@ const Header = () => {
             />
           </div>
         </div>
-        <div className="row mt-3">
+        <div className="row mt-1">
           Display / hide columns:
           <div className="col">
             <CheckBox
               id="ch-rank"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.rank}
+              changeHandle={showCheckHandle}
               text="Rank"
             />
           </div>
           <div className="col">
             <CheckBox
               id="ch-name"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.name}
+              changeHandle={showCheckHandle}
               text="Name"
             />
           </div>
           <div className="col">
             <CheckBox
               id="ch-mail"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.mail}
+              changeHandle={showCheckHandle}
               text="E-mail"
             />
           </div>
           <div className="col">
             <CheckBox
               id="ch-avatar"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.avatar}
+              changeHandle={showCheckHandle}
               text="Avatar"
             />
           </div>
           <div className="col">
             <CheckBox
-              id="ch-addr"
-              defaultValue
-              changeHandle={() => {}}
-              text="Address"
-            />
-          </div>
-          <div className="col">
-            <CheckBox
               id="ch-day"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.day}
+              changeHandle={showCheckHandle}
               text="Day"
             />
           </div>
           <div className="col">
             <CheckBox
               id="ch-active"
-              defaultValue
-              changeHandle={() => {}}
+              defaultValue={show.active}
+              changeHandle={showCheckHandle}
               text="Active"
+            />
+          </div>
+          <div className="col">
+            <CheckBox
+              id="ch-address"
+              defaultValue={show.address}
+              changeHandle={showCheckHandle}
+              text="Address"
             />
           </div>
         </div>

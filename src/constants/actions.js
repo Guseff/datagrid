@@ -20,3 +20,5 @@ export const FILTER_OFF = 'FILTER_OFF'
 export const PUT_OFFSET = 'PUT_OFFSET'
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE'
 export const VIRTUALIZE_TOGGLE = 'VIRTUALIZE_TOGGLE'
+
+export const SHOW_COLUMN = 'SHOW_COLUMN'
