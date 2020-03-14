@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -34,6 +34,8 @@ const TableBody = ({ data, scrollHandle, sHeight }) => {
     scroll * ROW_HEIGHT,
     sHeight - renderQty * ROW_HEIGHT
   )
+
+  useEffect(() => localStorage.setItem('show', JSON.stringify(show)))
 
   const clickHandle = e => {
     e.preventDefault()

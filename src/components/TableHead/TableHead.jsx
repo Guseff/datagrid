@@ -56,7 +56,7 @@ const TableHead = () => {
   }
 
   return (
-    <div className="wrapper-head">
+    <div className="head-wrapper">
       <table className="table table-hover table-sm table-header">
         <colgroup>
           <col className="table-col-1" />

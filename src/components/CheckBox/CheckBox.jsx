@@ -7,7 +7,7 @@ const CheckBox = ({ id, defaultValue, changeHandle, text }) => {
       <input
         id={id}
         type="checkbox"
-        defaultChecked={defaultValue}
+        checked={defaultValue}
         className="mr-1"
         onChange={changeHandle}
       />

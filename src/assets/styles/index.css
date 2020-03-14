@@ -91,10 +91,7 @@ th>button:active, th>button:focus {
 }
 
 .del-button {
-  width: 64px;
-  height: 32px;
-  margin-left: 15px;
-  background: url('../icons/del.png') center center no-repeat;
+  margin-right: 7px;
 }
 
 .sticky {
@@ -105,6 +102,10 @@ th>button:active, th>button:focus {
 .wrapper-main {
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.head-wrapper {
+  overflow: hidden;
 }
 
 .table-wrapper {

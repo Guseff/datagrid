@@ -20,10 +20,8 @@ const TableMain = () => {
   window.addEventListener('resize', updateWindowSize)
 
   const data = useSelector(state => state.data.main)
-  const { filterIfActive, filterByText, filterByDays } = useSelector(
-    state => state.filter
-  )
-  const { sort } = useSelector(state => state)
+  const { sort, filter } = useSelector(state => state)
+  const { filterIfActive, filterByText, filterByDays } = filter
 
   const dataAfterActiveFilter = filterIfActive
     ? data.filter(string => string.isActive)
@@ -44,13 +42,20 @@ const TableMain = () => {
     : dataAfterActiveFilter
 
   const dataAfterDaysFilter =
-    filterByDays && filterByDays.length
-      ? dataAfterTextFilter.filter(string => filterByDays.includes(string.day))
+    filterByDays && filterByDays.length > 0
+      ? dataAfterTextFilter.filter(string =>
+          filterByDays.map(x => x.value).includes(string.day.value)
+        )
       : dataAfterTextFilter
 
   const sortedData = sort.length
     ? sortElements(dataAfterDaysFilter, sort)
     : dataAfterDaysFilter
+
+  useEffect(() => {
+    localStorage.setItem('sort', JSON.stringify(sort))
+    localStorage.setItem('filter', JSON.stringify(filter))
+  })
 
   const scrollHandle = e => {
     e.preventDefault()

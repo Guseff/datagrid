@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 
@@ -21,7 +21,8 @@ const Header = () => {
   const virtualize = useSelector(state => state.vrt.virtualize)
   const sortedBy = useSelector(state => state.sort)
   const { show } = useSelector(state => state)
-  const [selected, setSelected] = useState()
+  const { filterByText } = useSelector(state => state.filter)
+  const selected = useSelector(state => state.filter.filterByDays)
 
   const activeCheckHandle = () => {
     dispatch(filterIfActive(!activeOnly))
@@ -32,7 +33,6 @@ const Header = () => {
   }
 
   const selectChange = options => {
-    setSelected(options)
     dispatch(filterByDays(options))
   }
 
@@ -51,7 +51,7 @@ const Header = () => {
       <form action="\">
         <div className="row">
           <div className="col-6">
-            <Search />
+            <Search value={filterByText} />
           </div>
           <div className="col-6">
             <span className="form-text text-muted">Select days to filter</span>
@@ -81,13 +81,15 @@ const Header = () => {
         </div>
         <div className="row mt-1">
           <div className="col-8 del-button-wrap">
-            Delete marked rows (mark with Ctrl)
             <button
               type="button"
               aria-label="delete"
-              className="del-button"
+              className="btn btn-sm btn-primary del-button"
               onClick={deleteButtonHandle}
-            />
+            >
+              Delete
+            </button>
+            marked rows (mark with Ctrl)
           </div>
           <div className="col-4 input-wrapper">
             <CheckBox
@@ -98,7 +100,7 @@ const Header = () => {
             />
           </div>
         </div>
-        <div className="row mt-1">
+        <div className="row mt-2">
           Display / hide columns:
           <div className="col">
             <CheckBox
