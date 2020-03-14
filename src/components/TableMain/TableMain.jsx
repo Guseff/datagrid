@@ -59,12 +59,12 @@ const TableMain = () => {
 
   const scrollHandle = e => {
     e.preventDefault()
-    const d = e.target.scrollTop
-    const s = Math.min(
-      Math.floor(d / ROW_HEIGHT),
+    const scrollX = e.target.scrollLeft
+    const scrollY = Math.min(
+      Math.floor(e.target.scrollTop / ROW_HEIGHT),
       sortedData.length * ROW_HEIGHT
     )
-    dispatch(putOffset(s))
+    dispatch(putOffset(scrollY, scrollX))
   }
 
   return (

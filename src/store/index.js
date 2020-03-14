@@ -4,7 +4,7 @@ import allReducers from '../reducers'
 import { makeData } from '../utils'
 
 const initialState = {
-  vrt: { offset: 0, virtualize: true },
+  vrt: { offset: 0, virtualize: true, scrollX: 0 },
   data: { main: makeData(), marked: [] },
   filter: JSON.parse(localStorage.getItem('filter')) || {
     filterIfActive: false,

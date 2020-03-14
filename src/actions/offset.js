@@ -1,8 +1,9 @@
 import { PUT_OFFSET, SET_WINDOW_SIZE, VIRTUALIZE_TOGGLE } from '../constants'
 
-export const putOffset = offset => ({
+export const putOffset = (offset, scrollX) => ({
   type: PUT_OFFSET,
   payload: offset,
+  scrollX,
 })
 
 export const setWindowSize = height => ({

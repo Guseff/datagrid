@@ -9,11 +9,12 @@ const TableString = ({ string, marked, show, clickHandle }) => {
       key={string.id.toString()}
       data-id={string.id}
       className={cn({
-        'table-secondary': bg,
+        'table-light': !bg,
+        'table-dark': bg,
       })}
       onClick={clickHandle}
     >
-      <th scope="row" className="sticky bg-white">
+      <th scope="row" className="sticky">
         {string.id}
       </th>
       {show.rank ? <td>{string.rank}</td> : null}

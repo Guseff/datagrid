@@ -106,10 +106,23 @@ th>button:active, th>button:focus {
 
 .head-wrapper {
   overflow: hidden;
+  position: relative;
+}
+
+.top-left {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  padding: 7px 5px;
+  z-index: 1500;
+  width: 50px;
+  height: 32px;
+  font-weight: bold;
+  background-color: #ffffff;
 }
 
 .table-wrapper {
   border-top: 0;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
 }

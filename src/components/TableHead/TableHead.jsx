@@ -11,8 +11,10 @@ import {
 
 const TableHead = () => {
   const dispatch = useDispatch()
-  const { show } = useSelector(state => state)
-  const { sort } = useSelector(state => state)
+  const { show, sort } = useSelector(state => state)
+  const { scrollX } = useSelector(state => state.vrt)
+  const styleString = `translateX(-${scrollX}px)`
+
   const byRank = sort.find(el => 'rank' in el)
     ? sort.find(el => 'rank' in el).rank
     : undefined
@@ -57,7 +59,11 @@ const TableHead = () => {
 
   return (
     <div className="head-wrapper">
-      <table className="table table-hover table-sm table-header">
+      <div className="top-left">#</div>
+      <table
+        className="table table-hover table-sm table-header"
+        style={{ transform: styleString }}
+      >
         <colgroup>
           <col className="table-col-1" />
           {show.rank ? <col className="table-col-2" /> : null}
@@ -70,7 +76,9 @@ const TableHead = () => {
         </colgroup>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col" className="sticky">
+              <div className="">#</div>
+            </th>
             {show.rank ? (
               <th scope="col">
                 <button type="button" data-id="rank" onClick={buttonHandle}>

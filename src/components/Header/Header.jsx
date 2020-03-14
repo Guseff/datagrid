@@ -101,7 +101,7 @@ const Header = () => {
           </div>
         </div>
         <div className="row mt-2">
-          Display / hide columns:
+          <div className="ml-3">Display / hide columns:</div>
           <div className="col">
             <CheckBox
               id="ch-rank"
