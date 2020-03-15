@@ -8,16 +8,14 @@ const SaveButton = ({ data }) => {
   }
 
   return (
-    <div className="row">
-      <div className="offset-10 col-2 mt-4">
-        <button
-          type="button"
-          onClick={clickHandle}
-          className="btn btn-sm btn-primary"
-        >
-          Save to CSV
-        </button>
-      </div>
+    <div className="col-auto align-self-end">
+      <button
+        type="button"
+        onClick={clickHandle}
+        className="btn btn-sm btn-primary"
+      >
+        Save to CSV
+      </button>
     </div>
   )
 }

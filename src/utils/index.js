@@ -136,3 +136,7 @@ export const getInitialState = () => {
     },
   }
 }
+
+export const makeQueryString = (active, search, days) => {
+  return `?filterIfActive=${active}&filterByText=${search}&filterByDays=${days}`
+}

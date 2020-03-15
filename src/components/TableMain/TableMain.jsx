@@ -7,6 +7,7 @@ import TableHead from '../TableHead/TableHead'
 import { putOffset, setWindowSize } from '../../actions/offset'
 import { sortElements } from '../../utils'
 import SaveButton from '../SaveButton'
+import QueryButton from '../QueryButton'
 
 const TableMain = () => {
   const dispatch = useDispatch()
@@ -75,7 +76,10 @@ const TableMain = () => {
         data={sortedData}
         sHeight={sortedData.length * ROW_HEIGHT}
       />
-      <SaveButton data={sortedData} />
+      <div className="container row mt-4">
+        <QueryButton />
+        <SaveButton data={sortedData} />
+      </div>
     </div>
   )
 }
