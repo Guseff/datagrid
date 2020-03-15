@@ -99,24 +99,31 @@ export const saveSVG = data => {
   document.body.removeChild(link)
 }
 
-// const getFilterFromQuerystring = string => {
-//   // string ?filterIfActive=true&filterByText=Ac&filterByDays=mon,sat
-//   const res = string
-//     .slice(1)
-//     .split('&')
-//     .map(arr => arr.split('='))
-//   return Object.fromEntries(res)
-// }
+const filtersAllow = ['filterIfActive', 'filterByText', 'filterByDays']
+
+// string example: ?filterIfActive=true&filterByText=Ac&filterByDays=mon,sat
+const getFilterFromQuerystring = string => {
+  if (!string) return undefined
+  const resArray = string
+    .slice(1)
+    .split('&')
+    .map(arr => arr.split('='))
+    .filter(arr => filtersAllow.includes(arr[0]))
+  const res = Object.fromEntries(resArray)
+  res.filterIfActive = res.filterIfActive === 'true'
+  return res
+}
 
 export const getInitialState = () => {
   return {
     vrt: { offset: 0, virtualize: true, scrollX: 0 },
     data: { main: makeData(), marked: [] },
-    filter: JSON.parse(localStorage.getItem('filter')) || {
-      filterIfActive: false,
-      filterByText: '',
-      filterByDays: '',
-    },
+    filter: getFilterFromQuerystring(window.location.search) ||
+      JSON.parse(localStorage.getItem('filter')) || {
+        filterIfActive: false,
+        filterByText: '',
+        filterByDays: '',
+      },
     sort: JSON.parse(localStorage.getItem('sort')) || [],
     show: JSON.parse(localStorage.getItem('show')) || {
       rank: true,

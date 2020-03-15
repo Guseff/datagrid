@@ -37,7 +37,7 @@ const Header = () => {
   }
 
   const selectChange = options => {
-    const res = options.map(elem => elem.value).join(',')
+    const res = options ? options.map(elem => elem.value).join(',') : ''
     dispatch(filterByDays(res))
   }
 
