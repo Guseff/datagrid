@@ -8,7 +8,7 @@ import {
 const initialState = {
   filterIfActive: false,
   filterByText: '',
-  filterByDays: [],
+  filterByDays: '',
 }
 
 const filter = (state = initialState, action) => {

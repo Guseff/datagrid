@@ -24,6 +24,10 @@ const Header = () => {
   const { filterByText } = useSelector(state => state.filter)
   const selected = useSelector(state => state.filter.filterByDays)
 
+  const values = selected
+    ? DAYS.filter(day => selected.split(',').includes(day.value))
+    : null
+
   const activeCheckHandle = () => {
     dispatch(filterIfActive(!activeOnly))
   }
@@ -33,7 +37,8 @@ const Header = () => {
   }
 
   const selectChange = options => {
-    dispatch(filterByDays(options))
+    const res = options.map(elem => elem.value).join(',')
+    dispatch(filterByDays(res))
   }
 
   const deleteButtonHandle = () => {
@@ -57,7 +62,7 @@ const Header = () => {
             <span className="form-text text-muted">Select days to filter</span>
             <Select
               isMulti
-              value={selected}
+              value={values}
               onChange={selectChange}
               options={DAYS}
             />

@@ -44,7 +44,7 @@ const TableMain = () => {
   const dataAfterDaysFilter =
     filterByDays && filterByDays.length > 0
       ? dataAfterTextFilter.filter(string =>
-          filterByDays.map(x => x.value).includes(string.day.value)
+          filterByDays.split(',').includes(string.day.value)
         )
       : dataAfterTextFilter
 

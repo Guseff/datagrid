@@ -98,3 +98,34 @@ export const saveSVG = data => {
   link.click()
   document.body.removeChild(link)
 }
+
+// const getFilterFromQuerystring = string => {
+//   // string ?filterIfActive=true&filterByText=Ac&filterByDays=mon,sat
+//   const res = string
+//     .slice(1)
+//     .split('&')
+//     .map(arr => arr.split('='))
+//   return Object.fromEntries(res)
+// }
+
+export const getInitialState = () => {
+  return {
+    vrt: { offset: 0, virtualize: true, scrollX: 0 },
+    data: { main: makeData(), marked: [] },
+    filter: JSON.parse(localStorage.getItem('filter')) || {
+      filterIfActive: false,
+      filterByText: '',
+      filterByDays: '',
+    },
+    sort: JSON.parse(localStorage.getItem('sort')) || [],
+    show: JSON.parse(localStorage.getItem('show')) || {
+      rank: true,
+      name: true,
+      mail: true,
+      avatar: true,
+      address: true,
+      active: true,
+      day: true,
+    },
+  }
+}
