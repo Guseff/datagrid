@@ -138,5 +138,10 @@ export const getInitialState = () => {
 }
 
 export const makeQueryString = (active, search, days) => {
-  return `?filterIfActive=${active}&filterByText=${search}&filterByDays=${days}`
+  const arr = [
+    active ? `filterIfActive=${active}&` : '',
+    search ? `filterByText=${search}&` : '',
+    days ? `filterByDays=${days}&` : '',
+  ].join('')
+  return arr.length > 0 ? `${arr.slice(0, -1)}` : ''
 }

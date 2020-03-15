@@ -8,11 +8,8 @@ const QueryButton = () => {
     state => state.filter
   )
   const clickHandle = () => {
-    window.location.search = makeQueryString(
-      filterIfActive,
-      filterByText,
-      filterByDays
-    )
+    const string = makeQueryString(filterIfActive, filterByText, filterByDays)
+    window.location.search = string
   }
 
   return (
