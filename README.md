@@ -7,6 +7,6 @@ Data generates by faker.js
 
 If virtualize is off, it takes some time to render and to sort table. Please be patient!
 
-Some errors in console due to facebook picture service. It's not my mistake!
+Some errors in console due to picture service. It's not my mistake!
 
 Please, use Chrome Redux Dev Tool for inspection.

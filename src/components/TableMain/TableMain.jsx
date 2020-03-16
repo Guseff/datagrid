@@ -76,7 +76,10 @@ const TableMain = () => {
         data={sortedData}
         sHeight={sortedData.length * ROW_HEIGHT}
       />
-      <div className="container row mt-4">
+      <div className="container row mt-2">
+        <div className="col font-weight-bold">{`Total ${sortedData.length} rows`}</div>
+      </div>
+      <div className="container row mt-3">
         <QueryButton />
         <SaveButton data={sortedData} />
       </div>
