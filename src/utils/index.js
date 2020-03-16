@@ -1,6 +1,5 @@
+import faker from 'faker'
 import { UP_ARROW, DOWN_ARROW, TWO_ARROWS, DAYS } from '../constants'
-
-const faker = require('faker')
 
 faker.seed(123)
 
