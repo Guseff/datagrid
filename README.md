@@ -1,4 +1,4 @@
-### RSScool task datagrid
+### RSSchool task data-grid
 
 Deployed on https://blackjack-data-grid.netlify.com/
 

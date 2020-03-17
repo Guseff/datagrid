@@ -78,7 +78,7 @@ export const sortElements = (elements, params) => {
   })
 }
 
-export const saveSVG = data => {
+export const saveCSV = data => {
   const csvFile = `#,Rank,Name,E-mail,Avatar,Day,Active,Address\n${data
     .map(
       el =>

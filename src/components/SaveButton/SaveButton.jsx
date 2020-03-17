@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { saveSVG } from '../../utils'
+import { saveCSV } from '../../utils'
 
 const SaveButton = ({ data }) => {
   const clickHandle = () => {
-    saveSVG(data)
+    saveCSV(data)
   }
 
   return (
