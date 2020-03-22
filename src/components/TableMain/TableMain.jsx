@@ -17,8 +17,11 @@ const TableMain = () => {
     dispatch(setWindowSize(h))
   }
 
-  useEffect(updateWindowSize, [])
-  window.addEventListener('resize', updateWindowSize)
+  useEffect(() => {
+    updateWindowSize()
+    window.addEventListener('resize', updateWindowSize)
+    return () => window.removeEventListener('resize', updateWindowSize)
+  }, [])
 
   const data = useSelector(state => state.data.main)
   const { sort, filter } = useSelector(state => state)
