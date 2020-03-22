@@ -1,0 +1,128 @@
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.table.table-header {
+  table-layout: fixed;
+  min-width: 1091px;
+  width: 1091px;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.table.table-body {
+  table-layout: fixed;
+  min-width: 1091px;
+  width: 1091px;
+  border-top: 0;
+}
+
+.tr-head th {
+  text-align: center;
+}
+
+tr img {
+  width: 24px;
+  border-radius: 50%;
+}
+
+th>button {
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+th>button:active, th>button:focus {
+  outline: 0;
+}
+
+.ellipsis {
+  height: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-col-1 {
+  min-width: 50px;
+  width: 50px;
+}
+.table-col-2 {
+  /* min-width: 800px; */
+  min-width: 100px;
+  width: 100px;
+}
+.table-col-3 {
+  /* min-width: 130px; */
+  min-width: 150px;
+  width: 150px;
+}
+.table-col-4 {
+  /* min-width: 300px; */
+  min-width: 300px;
+  width: 300px;
+}
+.table-col-5 {
+  /* min-width: 50px; */
+  min-width: 100px;
+  width: 100px;
+}
+.table-col-6 {
+  /* min-width: 110px; */
+  min-width: 150px;
+  width: 150px;
+}
+.table-col-7 {
+  /* min-width: 50px; */
+  min-width: 80px;
+  width: 80px;
+}
+.table-col-8 {
+  /* min-width: 340px; */
+  min-width: 350px;
+  width: 350px;
+}
+
+.del-button-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.del-button {
+  margin-right: 7px;
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+}
+
+.wrapper-main {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.head-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.top-left {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  padding: 7px 5px;
+  z-index: 1500;
+  width: 50px;
+  height: 32px;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+
+.table-wrapper {
+  border-top: 0;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
